@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import reducers from './src/Reducers';
-import ReduxThunk from 'redux-thunk';
 
 export default class App extends React.Component {
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    const store = createStore(reducers);
     return (
       <Provider store={store}>
         <View style={styles.container}>
