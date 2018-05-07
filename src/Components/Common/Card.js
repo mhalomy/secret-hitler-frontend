@@ -22,4 +22,4 @@ const styles = {
     margin: 5
   }
 };
-export default Card;
+export { Card };
