@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { connect } from 'tls';
+import { connect } from 'react-redux'
 // import Card from '../components/Card';
 // import CardSection from '../components/CardSection';
 // import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ class UserIntro extends Component {
   render() {
     let roleImage =
     this.props.role === 'liberal' ? require('../assets/liberal.jpg') :
-    this.props.role === 'fascist' ? require('../assets/liberal.jpg') :
+    this.props.role === 'fascist' ? require('../assets/fascist.jpg') :
     require('../assets/trump.jpg')
     return (
     <View style={styles.parent}>
@@ -42,8 +42,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
+const timeout = setTimeout(()=> console.warn('Switch to next screen'), 5000);
 
+const mapStateToProps = state => {
+  return {
+    role: 'liberal'
+  }
 }
 
 export default connect(mapStateToProps, null)( UserIntro);
