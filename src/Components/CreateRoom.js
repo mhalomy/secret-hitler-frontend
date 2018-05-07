@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardSection, Button, HomeImage } from './Common';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 export default class CreateJoin extends Component {
 
