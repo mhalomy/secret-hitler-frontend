@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { connect } from 'tls';
 // import Card from '../components/Card';
 // import CardSection from '../components/CardSection';
+// import { connect } from 'react-redux';
 
 
 class UserIntro extends Component {
@@ -40,4 +42,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserIntro;
+const mapStateToProps = state => {
+
+}
+
+export default connect(mapStateToProps, null)( UserIntro);
