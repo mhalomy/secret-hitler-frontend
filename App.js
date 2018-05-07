@@ -1,15 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
+<<<<<<< HEAD
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 
 import reducers from './redux/reducers';
+=======
+import { createStore } from 'redux';
+import reducers from './src/Reducers';
+>>>>>>> 167186b0a01ce4b32d11424ad9dcc0f5c58e416c
 
 export default class App extends React.Component {
   render() {
+    const store = createStore(reducers);
     return (
+<<<<<<< HEAD
       <Provider store={createStore(reducers, applyMiddleware(logger))}>
+=======
+      <Provider store={store}>
+>>>>>>> 167186b0a01ce4b32d11424ad9dcc0f5c58e416c
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
           <Text>Changes you make will automatically reload.</Text>
