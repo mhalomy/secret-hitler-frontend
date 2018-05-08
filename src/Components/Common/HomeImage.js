@@ -13,10 +13,10 @@ const HomeImage = (props) => {
   );
 };
 
-const imageUrl = 'https://lh3.googleusercontent.com/Je1l2lhriY7bJ6EfoMWW48FI2-9WSV7DM9i_xCYJXYMI1BtImqs-aRVz-thTOMccCh5qI0NBrMnv4ybudwlj=w1523-h904';
+const imageUrl = 'https://i.imgur.com/C7hXP5I.jpg';
 const styles = {
   imageStyle: {
-    height: 400,
+    height: 300,
     flex: 1,
     width: null,
     marginTop: 30,
