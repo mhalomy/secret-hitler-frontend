@@ -102,7 +102,6 @@ export const game = (state = initialAppState.game, action) => {
             }
           })
         }
-
       }
 
       case 'pick_policies':
@@ -112,9 +111,42 @@ export const game = (state = initialAppState.game, action) => {
           ...state.game,
           gameState : {
             ...state.game.gameState,
+            numberOfFascistPolicies: action.payload.numberOfFascistPolicies,
+            numberOfLiberalPolicies: action.payload.numberOfLiberalPolicies
           }
         }
       }
+
+      case 'execute_player':
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          playerList: state.game.playerList.map (el => {
+            if (el.id === action.payload.id) {
+              return Object.assign({}, playerList, {executed: true})
+            } else {
+              return Object.assign({}, playerList, {executed: false})
+            }
+          })
+        }
+      }
+
+      case 'veto_policy':
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          playerList: state.game.playerList.map (el => {
+            if (el.id === action.payload.id) {
+              return Object.assign({}, playerList, {vetoPowerUnlocked: true})
+            } else {
+              return Object.assign({}, playerList, {vetoPowerUnlocked: false})
+            }
+          })
+        }
+      }
+
   }
   return state;
 };
