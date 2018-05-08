@@ -18,6 +18,11 @@ const game =  {
       executed: false,
       hitler: false,
       president: false,
+      user: {
+        avatar: undefined,
+        id: undefined,
+        name: undefined,
+      }
     },
   ],
 }
@@ -39,10 +44,10 @@ export const game = (state = initialAppState.game, action) => {
           playerList: [
             ...state.game.playerList,
             {
-              chancellor: false,
-              executed: false,
-              hitler: false,
-              president: false,
+              // chancellor: false,
+              // executed: false,
+              // hitler: false,
+              // president: false,
               user: {
                 avatar: action.user.avatar,
                 id: action.user.id,
@@ -56,20 +61,7 @@ export const game = (state = initialAppState.game, action) => {
       case 'start_game':
       return {
         ...state,
-        game: {
-          ...state.game,
-          playerList: [
-            ...state.game.playerList,
-            {
-              chancellor: action.payload.chancellor,
-              executed: false,
-              hitler: action.payload.hitler,
-              president: action.payload.president,
-              user: {
-                ...state.game.playerList.user
-              }
-            }
-          ]
+        game: action.payload.game
         }
       }
 
@@ -89,6 +81,7 @@ export const game = (state = initialAppState.game, action) => {
           }
         }
       }
+
       case 'vote_on_chancellor':
       return {
         ...state,
