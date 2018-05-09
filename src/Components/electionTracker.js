@@ -11,7 +11,6 @@ export default class ElectionTracker extends Component {
   renderTrackers = () => {
     const trackers = [];
     for (let i = 0; i < 4; i++) {
-      //circleArray.push(<View key={i} style={styles.circle}/>)
       trackers.push(<Image key={i} source={require('../assets/board/trackerCircle.png')} width={'100%'} flex={0.5} margin={'5%'}/>)
     }
     return trackers;
