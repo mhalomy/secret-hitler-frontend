@@ -5,8 +5,7 @@ import { TextInput } from 'react-native';
 export default class JoinRoom extends Component {
 
   onJoinClick() {
-    //navigate to...
-    console.log('Join this game...')
+    this.props.navigation.navigate('Waiting');
   }
 
   render () {

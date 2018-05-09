@@ -5,8 +5,7 @@ import { Text } from 'react-native';
 export default class CreateJoin extends Component {
 
   onStartClick() {
-    //navigate to...
-    console.log('start')
+    this.props.navigation.navigate('Waiting');
   }
 
   render () {

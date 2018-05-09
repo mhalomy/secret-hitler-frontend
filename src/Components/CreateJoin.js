@@ -3,12 +3,12 @@ import { Card, CardSection, Button, HomeImage } from './Common';
 
 export default class CreateJoin extends Component {
 
-  onCreateClick() {
-    //navigate to the CreateRoom component
+  onCreateClick = () => {
+    this.props.navigation.navigate('Create');
   }
 
-  onJoinClick() {
-    //navigate to the JoinRoom component
+  onJoinClick = () => {
+    this.props.navigation.navigate('Join');
   }
 
   render () {

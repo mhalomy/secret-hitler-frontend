@@ -1,14 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation';
+import CreateUser from './src/Components/CreateUser';
+import WaitingScreen from './src/Screens/WaitingScreen';
+import CreateRoom from './src/Components/CreateRoom';
+import JoinRoom from './src/Components/JoinRoom';
+import CreateJoin from './src/Components/CreateJoin';
 
 export default class App extends React.Component {
   render() {
+    const MainNavigator = createBottomTabNavigator({
+      Login: { screen: CreateUser },
+      CreateJoin: { screen: CreateJoin },
+      CreateOrJoin: {
+        screen: createBottomTabNavigator({
+          Create: { screen: CreateRoom },
+          Join: { screen: JoinRoom },
+          Waiting: { screen: WaitingScreen }
+        }, {
+          navigationOptions: {
+            tabBarVisible: false
+          },
+          lazy: true
+        })
+      }
+    }, {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true
+    });
+
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <MainNavigator />
     );
   }
 }

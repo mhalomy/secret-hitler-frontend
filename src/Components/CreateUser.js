@@ -10,9 +10,12 @@ export default class CreateUser extends Component {
     avatars: avatars
   };
 
-  onCreateClick() {
-    //navigate to...
-    console.log('Create Username')
+  onCreateClick = () => {
+    this.props.navigation.navigate('CreateJoin');
+  }
+
+  onAvatarClick = () => {
+    return {}
   }
 
   renderAvatars() {
