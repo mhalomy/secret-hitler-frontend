@@ -15,7 +15,7 @@ const playerList = [
     {
       avatar: "blue",
       id: "ad90cb17-a650-407c-a185-50bab05c8484",
-      name: "jackTheRipper",
+      name: "jack",
     }
   }, {
     user:
@@ -40,23 +40,6 @@ class PatientPlayers extends Component {
     super(props)
   }
 
-  // renderPlayers = () => {
-  //   let currentPlayers = [];
-  //   if (this.props.playerList) {
-  //     for (let i = 0; i < this.props.playerList.length; i++) {
-  //       currentPlayers.push(
-  //         <View key={i}>
-  //           this.props.playerList[i].user.avatar,
-  //           <Text>
-  //             this.props.playerList[i].user.name,
-  //           </Text>
-  //         </View>
-  //       )
-  //     }
-  //   return currentPlayers;
-  //   }
-  // }
-
   renderPlayers = () => {
     let currentPlayers = [];
     if (playerList) {
@@ -64,9 +47,9 @@ class PatientPlayers extends Component {
         const avatar = playerList[i].user.avatar;
         const name = playerList[i].user.name
         currentPlayers.push(
-          <View key={i}>
-            <Image source={require('../assets/WaitingRoom/waitingRoomBackground.png')} style={{width: 10, height: 10, flex:1}}/>
-            <Text style={{fontSize: 20, color: 'red', fontWeight: 'bold', padding: '10%', display: 'flex', justifyContent: 'space-between',}}> {avatar} {name}</Text>
+          <View key={i} style={{backgroundColor: 'transparent', display: 'flex', alignItems:'center',  margin: '3%', width: '100%', padding:'5%'}}>
+            <Image source={require('../assets/trump.jpg')} style={{width: '30%', height: '50%'}}/>
+            <Text style={{backgroundColor: 'black', fontSize: 18, color: 'white', fontWeight: 'bold', marginBottom: '10%'}}> {name} </Text>
           </View>
         )
       }
@@ -76,7 +59,7 @@ class PatientPlayers extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flexDirection: 'column'}}>
         {this.renderPlayers()}
       </View>
     )
@@ -97,7 +80,7 @@ export default class WaitingRoom extends Component {
   }
 
   renderTips = () => {
-    const randomIndex = Math.floor(Math.random() * testTips.length)
+    const randomIndex = Math.floor(Math.random() * testTips.length - 1)
     setInterval(() => {
       return testTips[randomIndex]
     }, 4000)
@@ -113,13 +96,13 @@ export default class WaitingRoom extends Component {
           </View>
 
           <View style={styles.waitingMessageContainer}>
-            <Text style={{fontSize: 40, color: 'red', fontWeight: 'bold', margin: '15%', width:'100%', height: '100%', textShadow: ''}}>  Waiting for more players</Text>
+            <Text style={{fontSize: 42, color: 'red', fontWeight: '900', margin: '5%', width:'100%', height: '100%', textShadowColor: 'black', textShadowOffset: {width: 10, height: 10}, textShadowRadius: 10}}>Waiting for more players</Text>
           </View>
 
 
           <View style={styles.tipsContainer}>
             {this.renderTips()}
-            <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}>Tip: Claiming to be a liberal is the way to go </Text>
+            <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}>Tip: Always claim to be liberal </Text>
           </View>
         </ImageBackground>
       </View>
@@ -135,40 +118,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     width: '100%',
-    flexWrap: 'wrap',
   },
 
   waitingMessageContainer: {
     backgroundColor: 'transparent',
-    width: '80%',
+    width: '85%',
     alignSelf: 'flex-start',
-    flex: 0.38,
+    flex: 0.3,
+    marginBottom: '3%'
   },
 
   playersContainer: {
     backgroundColor: 'transparent',
     width: '100%',
-    flex: 0.5,
+    flex: 0.6,
+    // alignSelf: 'flex-start',
     display: 'flex',
-    flexDirection: 'column',
-    padding: '20%'
+    flexDirection: 'row',
+    padding: '25%',
   },
 
   tipsContainer: {
     backgroundColor: '#958247',
     width: '100%',
     alignSelf: 'flex-end',
-    flex: 0.12,
+    flex: 0.1,
     opacity: 0.6,
   },
 
 
 });
-
-// const mapStateToProps = state => {
-//   return {
-//     playerList: state.game.playerList
-//   }
-// }
-//
-// export default connect(mapStateToProps, null)(WaitingRoom);
