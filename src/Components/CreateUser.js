@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
 import { Card, CardSection, Button, HomeImage } from './Common';
-import { TextInput } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import avatars from '../Avatars.json';
 
 export default class CreateUser extends Component {
+
+  state = {
+    avatars: avatars
+  };
 
   onCreateClick() {
     //navigate to...
     console.log('Create Username')
+  }
+
+  renderAvatars() {
+    return this.state.avatars.map((avatar, i) => {
+      return (
+        <View key={i}>
+          <Avatar
+            containerStyle={{alignSelf: 'center', marginBottom: 20}}
+            large
+            rounded
+            source={{ uri: avatar.img }}
+            onPress={()=>console.log('avatar clicked')}
+            activeOpacity={0.7}
+            resizeMode="resize"
+          />
+        </View>
+      );
+    });
   }
 
   render () {
@@ -21,16 +44,9 @@ export default class CreateUser extends Component {
             />
           </CardSection>
 
-          <CardSection style={{flexDirection: 'column'}} >
-            <Avatar
-              containerStyle={{alignSelf: 'center'}}
-              xlarge
-              rounded
-              source={{ uri: "https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_moustache-512.png"}}
-              onPress={()=>console.log('avatar clicked')}
-              activeOpacity={0.7}
-            />
-          </CardSection>
+
+          {this.renderAvatars()}
+
 
           <CardSection>
             <Button
