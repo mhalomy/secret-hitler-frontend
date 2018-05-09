@@ -7,6 +7,11 @@ import avatars from '../Avatars.json';
 export default class CreateUser extends Component {
 
   state = {
+    user: {
+      avatar: undefined,
+      id: undefined,
+      name: undefined
+    },
     avatars: avatars
   };
 
@@ -14,8 +19,20 @@ export default class CreateUser extends Component {
     this.props.navigation.navigate('CreateJoin');
   }
 
-  onAvatarClick = () => {
-    return {}
+  onAvatarClick = (event) => {
+    console.log(event)
+    return this.setState({
+      user: {
+      }
+    })
+  }
+
+  onTextInput = (name) => {
+    return this.setState({
+      user: {
+        ...this.state.user,
+        name
+    }});
   }
 
   renderAvatars() {
@@ -43,12 +60,12 @@ export default class CreateUser extends Component {
               style={styles.textInputStyle}
               placeholder="Enter your Username"
               autoCorrect={false}
+              onChangeText={this.onTextInput}
+              value={this.state.user.name}
             />
           </CardSection>
 
-
           {this.renderAvatars()}
-
 
           <CardSection>
             <Button
