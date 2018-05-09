@@ -27,13 +27,13 @@ const game =  {
   ],
 }
 
-export const game = (state = initialAppState.game, action) => {
+export const gameReducer = (state = initialAppState.game, action) => {
  // if (action.type === 'new_game_state' && action.game) return action.game;
   switch (action.type) {
     case 'create_game':
       return {
         ...state,
-        game: action.payload,
+        game: action.game,
       }
 
       case 'join_game':
@@ -44,10 +44,6 @@ export const game = (state = initialAppState.game, action) => {
           playerList: [
             ...state.game.playerList,
             {
-              // chancellor: false,
-              // executed: false,
-              // hitler: false,
-              // president: false,
               user: {
                 avatar: action.user.avatar,
                 id: action.user.id,
@@ -61,7 +57,7 @@ export const game = (state = initialAppState.game, action) => {
       case 'start_game':
       return {
         ...state,
-        game: action.payload.game
+        game: action.game
       }
 
       case 'leave_game':
@@ -76,7 +72,7 @@ export const game = (state = initialAppState.game, action) => {
           ...state.game,
           gameState: {
             ...state.game.gameState,
-            suggestedChancellor: action.payload,
+            suggestedChancellor: action.game.gameState.suggestedChancellor,
           }
         }
       }
@@ -86,11 +82,11 @@ export const game = (state = initialAppState.game, action) => {
         ...state,
         game: {
           ...state.game,
-          playerList: state.game.playerList.map (el => {
-            if (el.id === action.payload.id) {
-              return Object.assign({}, playerList, {chancellor: true})
+          playerList: state.game.playerList.map (player => {
+            if (player.id === action.playerId) {
+              return Object.assign({}, player, {chancellor: true})
             } else {
-              return Object.assign({}, playerList, {chancellor: false})
+              return Object.assign({}, player, {chancellor: false})
             }
           })
         }
@@ -103,8 +99,8 @@ export const game = (state = initialAppState.game, action) => {
           ...state.game,
           gameState : {
             ...state.game.gameState,
-            numberOfFascistPolicies: action.payload.numberOfFascistPolicies,
-            numberOfLiberalPolicies: action.payload.numberOfLiberalPolicies
+            numberOfFascistPolicies: action.game.gameState.numberOfFascistPolicies,
+            numberOfLiberalPolicies: action.game.gameState.numberOfLiberalPolicies
           }
         }
       }
@@ -114,11 +110,11 @@ export const game = (state = initialAppState.game, action) => {
         ...state,
         game: {
           ...state.game,
-          playerList: state.game.playerList.map (el => {
-            if (el.id === action.payload.id) {
-              return Object.assign({}, playerList, {executed: true})
+          playerList: state.game.playerList.map (player => {
+            if (player.id === action.playerId) {
+              return Object.assign({}, player, {executed: true})
             } else {
-              return Object.assign({}, playerList, {executed: false})
+              return Object.assign({}, player, {executed: false})
             }
           })
         }
@@ -129,11 +125,11 @@ export const game = (state = initialAppState.game, action) => {
         ...state,
         game: {
           ...state.game,
-          playerList: state.game.playerList.map (el => {
-            if (el.id === action.payload.id) {
-              return Object.assign({}, playerList, {vetoPowerUnlocked: true})
+          playerList: state.game.playerList.map (player => {
+            if (player.id === action.playerId) {
+              return Object.assign({}, player, {vetoPowerUnlocked: true})
             } else {
-              return Object.assign({}, playerList, {vetoPowerUnlocked: false})
+              return Object.assign({}, player, {vetoPowerUnlocked: false})
             }
           })
         }
