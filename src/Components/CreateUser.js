@@ -27,9 +27,8 @@ export default class CreateUser extends Component {
             large
             rounded
             source={{ uri: avatar.img }}
-            onPress={()=>console.log('avatar clicked')}
+            onPress={this.onAvatarClick}
             activeOpacity={0.7}
-            resizeMode="resize"
           />
         </View>
       );
@@ -53,7 +52,7 @@ export default class CreateUser extends Component {
 
           <CardSection>
             <Button
-              onPress={this.onCreateClick.bind(this)}
+              onPress={this.onCreateClick}
               style={{ marginTop: 50}}
             >
               Let Me In...

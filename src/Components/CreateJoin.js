@@ -17,13 +17,13 @@ export default class CreateJoin extends Component {
           <HomeImage />
 
           <CardSection>
-            <Button onPress={this.onCreateClick.bind(this)}>
+            <Button onPress={this.onCreateClick}>
               Create
             </Button>
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onJoinClick.bind(this)}>
+            <Button onPress={this.onJoinClick}>
               Join
             </Button>
           </CardSection>

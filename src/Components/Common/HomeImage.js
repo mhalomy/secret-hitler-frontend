@@ -20,7 +20,8 @@ const styles = {
     flex: 1,
     width: null,
     marginTop: 30,
-    marginBottom: 30
+    marginBottom: 30,
+    resizeMode: 'contain'
   }
 };
 
