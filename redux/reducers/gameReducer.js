@@ -33,7 +33,7 @@ export const game = (state = initialAppState.game, action) => {
     case 'create_game':
       return {
         ...state,
-        game: action.game,
+        game: action.payload,
       }
 
       case 'join_game':
@@ -62,7 +62,6 @@ export const game = (state = initialAppState.game, action) => {
       return {
         ...state,
         game: action.payload.game
-        }
       }
 
       case 'leave_game':
