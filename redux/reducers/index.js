@@ -2,6 +2,14 @@ import { combineReducers } from 'redux';
 
 import { socketReducer } from './socket.reducer';
 
-export default combineReducers({
+import userReducer  from './userReducer';
+import gameReducer  from './gameReducer';
+
+const reducers = combineReducers({
   socketReducer,
+  gameReducer,
+  userReducer,
+  presentationReducer,
 });
+
+export default reducers;
