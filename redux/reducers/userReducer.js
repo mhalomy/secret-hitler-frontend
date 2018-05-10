@@ -4,7 +4,7 @@ const user = {
   name: undefined,
 }
 
-export const user = (state = user, action) => {
+const userReducer = (state = user, action) => {
   switch (action.type) {
     case 'create_user':
     return {
