@@ -1,38 +1,30 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage } from './Common';
-import { TextInput, View } from 'react-native';
+import { connect } from 'react-redux';
+import { TextInput, View, Text, ScrollView } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
+import { Card, CardSection, Button, HomeImage } from './Common';
+import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
 
-export default class CreateUser extends Component {
+class CreateUser extends Component {
 
   state = {
-    user: {
-      avatar: undefined,
-      id: undefined,
-      name: undefined
-    },
     avatars: avatars
   };
 
   onCreateClick = () => {
+    const { avatar, id, name } = this.props;
+    this.props.createUser({ avatar, id, name });
     this.props.navigation.navigate('CreateJoin');
   }
 
-  onAvatarClick = (event) => {
-    console.log(event)
-    return this.setState({
-      user: {
-      }
-    })
+  onAvatarPressed = (avatar, e) => {
+    const avatarUrl = avatar.img;
+    this.props.avatarPressed(avatarUrl);
   }
 
-  onTextInput = (name) => {
-    return this.setState({
-      user: {
-        ...this.state.user,
-        name
-    }});
+  onUsernameChange(name)  {
+    this.props.usernameChanged(name);
   }
 
   renderAvatars() {
@@ -44,7 +36,7 @@ export default class CreateUser extends Component {
             large
             rounded
             source={{ uri: avatar.img }}
-            onPress={this.onAvatarClick}
+            onPress={this.onAvatarPressed.bind(this, avatar)}
             activeOpacity={0.7}
           />
         </View>
@@ -60,17 +52,23 @@ export default class CreateUser extends Component {
               style={styles.textInputStyle}
               placeholder="Enter your Username"
               autoCorrect={false}
-              onChangeText={this.onTextInput}
-              value={this.state.user.name}
+              onChangeText={this.onUsernameChange.bind(this)}
+              value={this.props.name}
             />
           </CardSection>
 
           {this.renderAvatars()}
 
           <CardSection>
+            <Text style={{ flex: 1, textAlign: 'center' }}>
+              Hello there {this.props.name}!
+            </Text>
+          </CardSection>
+
+          <CardSection>
             <Button
-              onPress={this.onCreateClick}
-              style={{ marginTop: 50}}
+              onPress={this.onCreateClick.bind(this)}
+              style={{ marginTop: 25}}
             >
               Let Me In...
             </Button>
@@ -101,3 +99,16 @@ const styles = {
     alignItems: 'center'
   }
 }
+
+const mapStateToProps = ({ userReducer }) => {
+  const { avatar, id, name } = userReducer;
+  return {
+    avatar, id, name
+  }
+}
+
+export default connect(mapStateToProps, {
+  usernameChanged,
+  createUser,
+  avatarPressed
+})(CreateUser);
