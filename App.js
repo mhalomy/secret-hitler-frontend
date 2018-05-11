@@ -1,4 +1,26 @@
+// import React from 'react';
+// import UserIntro from './src/screens/UserIntro';
+// import { StyleSheet, Text, View } from 'react-native';
+// import { Provider } from 'react-redux';
+// import { createStore, applyMiddleware } from 'redux';
+// import logger from 'redux-logger';
+//
+// import reducers from './redux/reducers';
+//
+// export default class App extends React.Component {
+//   render() {
+//     const store = createStore(reducers);
+//     return (
+//       <Provider store={createStore(reducers, applyMiddleware(logger))}>
+//         <UserIntro/>
+//       </Provider>
+//     );
+//   }
+// }
+
 import React from 'react';
+
+=======
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -11,10 +33,13 @@ import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import { createBottomTabNavigator } from 'react-navigation';
 
-import reducers from './redux/reducers';
+import WaitingRoom from './src/screens/WaitingRoom';
 
 export default class App extends React.Component {
+
   render() {
+
+=======
     const MainNavigator = createBottomTabNavigator({
       Login: { screen: CreateUser },
       CreateJoin: { screen: CreateJoin },
