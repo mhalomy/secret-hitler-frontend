@@ -5,6 +5,42 @@ import { connect } from 'react-redux';
 // import { startGame } from '../Reducers/gameActions';
 import UserIntro from './UserIntro';
 
+const playerList = [
+
+  {
+    user :
+    {
+      avatar: "blue",
+      id: "ad90cb17-a650-407c-a185-50bab05c8484",
+      name: "jack",
+    }
+  }, {
+    user:
+    {
+      avatar: "red",
+      id: "ad90cb17-a650-407c-a185-50bab05c8484",
+      name: "jackeline",
+    }
+  },
+  {
+  user:
+    {
+      avatar: "pink",
+      id: "ad90cb17-a650-407c-a185-50bab05c8484",
+      name: "hitler",
+    }
+  },
+  {
+    user:
+    {
+      avatar: "pink",
+      id: "ad90cb17-a650-407c-a185-50bab05c8484",
+      name: "harry the nazi",
+    }
+  },
+]
+
+
 class PatientPlayers extends Component {
   constructor (props) {
     super(props)
@@ -12,10 +48,10 @@ class PatientPlayers extends Component {
 
   renderPlayers = () => {
     let currentPlayers = [];
-    if (this.props) {
-      for (let i = 0; i < this.props.length; i++) {
-        const avatar = this.props[i].user.avatar;
-        const name = this.props[i].user.name
+    if (playerList) {
+      for (let i = 0; i < playerList.length; i++) {
+        const avatar = playerList[i].user.avatar;
+        const name = playerList[i].user.name
         currentPlayers.push(
           <View key={i} style={{display: 'flex', alignItems:'center',  margin: '5%', height: '30%', width:'40%', padding:'5%'}}>
             <Image source={require('../assets/trump.jpg')} style={{width: '30%', height: '50%'}}/>
@@ -42,7 +78,7 @@ export default class WaitingRoom extends Component {
   }
 
   renderText = () => {
-    if (this.props.playerList.length <= 5) {
+    if (playerList.length <= 5) {
       return 'Waiting for more players'
     } else {
       return 'All set, now divide and conquer!'
@@ -50,15 +86,19 @@ export default class WaitingRoom extends Component {
   }
 
 
-  startGame = (dispatch) => (gameId) => {
-    if (this.props.length === 5) {
-      this.props.navigation.navigate('UserIntro')
-      dispatch(socketStartGame(game))
-    }
+  // startGame = (dispatch) => (gameId) => {
+  //   if (playerList === 5) {
+  //     this.props.navigation.navigate('UserIntro')
+  //     // dispatch(socketStartGame(game))
+  //   }
+  // }
+
+  startGame = () => {
+    this.props.navigation.navigate('UserIntro')
   }
 
   renderButton = () => {
-    if (this.props.length > 6) {
+    if (playerList.length < 3) {
       return (
         <TouchableOpacity disabled={true}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
@@ -66,7 +106,7 @@ export default class WaitingRoom extends Component {
       )
     } else {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.startGame}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
         </TouchableOpacity>
       )
@@ -86,11 +126,9 @@ export default class WaitingRoom extends Component {
             <Text style={{ fontSize: 42, color: 'red', fontWeight: '900', margin: '5%', width:'100%', height: '100%', textShadowColor: 'black', textShadowOffset: {width: 10, height: 10}, textShadowRadius: 8}}>{this.renderText()}</Text>
           </View>
 
-          if (user.id === initiator.id) {
             <View style={styles.startButton}>
               {this.renderButton()}
             </View>
-          }
 
           <View style={styles.tipsContainer}>
             <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}> Tip: Always claim to be liberal </Text>
@@ -155,8 +193,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
-  playerList: state.game.playerList
-})
-
-export default connect(mapStateToProps, null)(WaitingRoom);
+// const mapStateToProps = state => ({
+//   playerList: state.game.playerList
+// })
+//
+// export default connect(mapStateToProps, null)(WaitingRoom);

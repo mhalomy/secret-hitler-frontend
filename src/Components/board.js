@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Tile from './tile';
+import Tile from './Tile';
 
 export default class Board extends Component {
   constructor (props) {

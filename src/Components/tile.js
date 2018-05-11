@@ -10,7 +10,6 @@ export default class Tile extends Component {
     return (
       <View
         style={{
-          borderWidth: 0.5,
           height: '60%',
           backgroundColor: 'transparent',
           width: '14%',

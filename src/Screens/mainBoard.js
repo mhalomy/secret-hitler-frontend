@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
-import ElectionTracker from '../Components/electionTracker';
-import Board from '../Components/board';
+import ElectionTracker from '../Components/ElectionTracker';
+import Board from '../Components/Board';
 
 export default class MainBoard extends Component {
   constructor (props) {
