@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 // import { startGame } from '../Reducers/gameActions';
+import UserIntro from './UserIntro';
 
 class PatientPlayers extends Component {
   constructor (props) {
@@ -10,10 +12,10 @@ class PatientPlayers extends Component {
 
   renderPlayers = () => {
     let currentPlayers = [];
-    if (this.props.playerList) {
-      for (let i = 0; i < playerList.length; i++) {
-        const avatar = this.props.playerList[i].user.avatar;
-        const name = this.props.playerList[i].user.name
+    if (this.props) {
+      for (let i = 0; i < this.props.length; i++) {
+        const avatar = this.props[i].user.avatar;
+        const name = this.props[i].user.name
         currentPlayers.push(
           <View key={i} style={{display: 'flex', alignItems:'center',  margin: '5%', height: '30%', width:'40%', padding:'5%'}}>
             <Image source={require('../assets/trump.jpg')} style={{width: '30%', height: '50%'}}/>
@@ -49,13 +51,14 @@ export default class WaitingRoom extends Component {
 
 
   startGame = (dispatch) => (gameId) => {
-    if (this.props.playerList.length === 5) {
+    if (this.props.length === 5) {
+      this.props.navigation.navigate('UserIntro')
       dispatch(socketStartGame(game))
     }
   }
 
   renderButton = () => {
-    if (this.props.playerList.length > 6) {
+    if (this.props.length > 6) {
       return (
         <TouchableOpacity disabled={true}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
@@ -150,5 +153,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   }
-
 });
+
+const mapStateToProps = state => ({
+  playerList: state.game.playerList
+})
+
+export default connect(mapStateToProps, null)(WaitingRoom);
