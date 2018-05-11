@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import Test from './src/test';
 import logger from 'redux-logger';
 import WaitingScreen from './src/Screens/WaitingScreen';
 import CreateRoom from './src/Components/CreateRoom';

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux'
-// import Card from '../components/Card';
-// import CardSection from '../components/CardSection';
-// import { connect } from 'react-redux';
-
 
 class UserIntro extends Component {
 
