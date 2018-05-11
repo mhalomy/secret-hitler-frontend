@@ -1,8 +1,16 @@
 {
   "expoServerPort": 19000,
+<<<<<<< HEAD
   "packagerPort": 19002,
   "packagerPid": 42966,
   "expoServerNgrokUrl": "https://sx-c7x.lululynx.secret-hitler-frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.sx-c7x.lululynx.secret-hitler-frontend.exp.direct",
   "ngrokPid": 39838
+=======
+  "packagerPort": 19001,
+  "packagerPid": 12338,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
+>>>>>>> 2185c16dc7071865c37bd9b5590af6eecbdb268c
 }
