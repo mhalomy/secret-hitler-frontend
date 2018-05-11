@@ -1,21 +1,31 @@
+import {
+  username_changed,
+  create_user,
+  avatar_pressed
+} from '../actions';
+
 const user = {
   avatar: undefined,
   id: undefined,
   name: undefined,
 }
-
-const userReducer = (state = user, action) => {
+export default userReducer = (state = user, action) => {
   switch (action.type) {
+    case 'username_changed':
+      return {
+        ...state,
+        name: action.payload
+      };
     case 'create_user':
-    return {
-      state,
-      user: {
-        avatar: action.payload.avatar,
-        id: action.payload.id,
-        name: action.payload.name
-      }
-    }
+      return {
+        ...state
+      };
+    case 'avatar_pressed':
+      return {
+        ...state,
+        avatar: action.payload
+      };
+    default:
+      return state;
   }
-
-  return state
-}
+};
