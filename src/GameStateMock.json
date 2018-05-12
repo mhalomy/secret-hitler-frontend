@@ -1,0 +1,93 @@
+{
+  "gameOver": false,
+  "id": "undefined",
+  "gameState": {
+    "electionFailCount": 0,
+    "numberOfFascistPolicies": 0,
+    "numberOfFascists": 0,
+    "numberOfLiberalPolicies": 0,
+    "numberOfLiberals": 0,
+    "turnCount": 0,
+    "vetoPowerUnlocked": false,
+    "suggestedChancellor": "undefined"
+  },
+  "initiator": {
+    "avatar": "undefined",
+    "id": "undefined",
+    "name": "undefined"
+  },
+  "playerList": [
+    {
+      "id": 101,
+      "chancellor": false,
+      "executed": false,
+      "hitler": true,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/QukSoXc.png",
+        "id": 101,
+        "name": "janosh"
+      }
+    },
+    {
+      "id": 102,
+      "chancellor": true,
+      "executed": false,
+      "hitler": false,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/YMEhoHH.jpg",
+        "id": 102,
+        "name": "oscar"
+      }
+    },
+    {
+      "id": 103,
+      "chancellor": false,
+      "executed": false,
+      "hitler": false,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/oVMdPJ0.jpg",
+        "id": 103,
+        "name": "diego",
+      }
+    },
+    {
+      "id": 104,
+      "chancellor": false,
+      "executed": false,
+      "hitler": false,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/QukSoXc.png",
+        "id": 104,
+        "name": "lucie",
+      }
+    },
+    {
+      "id": 105,
+      "chancellor": false,
+      "executed": false,
+      "hitler": false,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/YMEhoHH.jpg",
+        "id": 105,
+        "name": "krysh",
+      }
+    },
+    {
+      "id": 106,
+      "chancellor": false,
+      "executed": false,
+      "hitler": false,
+      "president": false,
+      "user": {
+        "avatar": "https://i.imgur.com/oVMdPJ0.jpg",
+        "id": 106,
+        "name": "arol",
+      }
+    },
+  ]
+}
