@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { Text } from 'react-native';
 
+
 export default class CreateJoin extends Component {
 
   onStartClick() {

@@ -32,13 +32,13 @@ const game =  {
   ],
 }
 
-const gameReducer = (state = initialAppState.game, action) => {
+export default gameReducer = (state = game, action) => {
   switch (action.type) {
     case 'create_game':
-    return action.game;
+    return {
+      ...state,
+      game: action.payload
+    }
   }
   return state;
 };
-
-
-

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
-// import { startGame } from '../Reducers/gameActions';
+import { startGame } from '../../redux/actions/gameActions';
+
 import UserIntro from './UserIntro';
 
 class PatientPlayers extends Component {
@@ -36,7 +37,7 @@ class PatientPlayers extends Component {
   }
 }
 
-export default class WaitingRoom extends Component {
+class WaitingRoom extends Component {
   constructor (props) {
     super(props)
   }
@@ -50,11 +51,12 @@ export default class WaitingRoom extends Component {
   }
 
 
-  startGame = (dispatch) => (gameId) => {
-    if (this.props.length === 5) {
-      this.props.navigation.navigate('UserIntro')
+  startGame = (dispatch) => (message, gameId) => {
+    // if (this.props.length === 5) {
+      // this.props.navigation.navigate('UserIntro')
+      console.log('LETS START THIS GAME', gameId)
       dispatch(socketStartGame(game))
-    }
+    //}
   }
 
   renderButton = () => {
@@ -74,6 +76,7 @@ export default class WaitingRoom extends Component {
   }
 
   render() {
+    console.log('STATE', this.props)
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
@@ -156,7 +159,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  playerList: state.game.playerList
+  playerList: state
 })
+
+const mapDispatchToProps = (game) => {
+  return {
+    createGame: (game) => dispatch(createGame(game))
+  }
+}
 
 export default connect(mapStateToProps, null)(WaitingRoom);
