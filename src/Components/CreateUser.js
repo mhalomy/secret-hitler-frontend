@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextInput, View, Text, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView, TouchableHighlight } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
 import { readStorage, writeStorage } from '../storage/index';
+import uuidv4 from ('uuid/v4');
 
 class CreateUser extends Component {
 
@@ -16,7 +17,12 @@ class CreateUser extends Component {
 
   onCreateClick = () => {
     const { avatar, id, name } = this.props;
-
+    let idStored = readStorage(name)
+    if (idStored) {
+      id = idStored;
+    }
+    id = uuidv4();
+    id = writeStorage(name, )
     this.props.createUser({ avatar, id, name });
     this.props.navigation.navigate('CreateJoin');
   }
@@ -34,14 +40,16 @@ class CreateUser extends Component {
     return this.state.avatars.map((avatar, i) => {
       return (
         <View key={i}>
-          <Avatar
-            containerStyle={{alignSelf: 'center', marginBottom: 20}}
-            large
-            rounded
-            source={{ uri: avatar.img }}
-            onPress={this.onAvatarPressed.bind(this, avatar)}
-            activeOpacity={0.7}
-          />
+          <TouchableHighlight>
+            <Avatar
+              containerStyle={{alignSelf: 'center', marginBottom: 20}}
+              large
+              rounded
+              source={{ uri: avatar.img }}
+              onPress={this.onAvatarPressed.bind(this, avatar)}
+              activeOpacity={0.7}
+            />
+          </TouchableHighlight>
         </View>
       );
     });
