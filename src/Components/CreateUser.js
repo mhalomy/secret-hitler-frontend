@@ -6,7 +6,7 @@ import avatars from '../Avatars.json';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
 import { readStorage, writeStorage } from '../storage/index';
-import uuidv4 from ('uuid/v4');
+import uuidv4 from 'uuid/v4';
 
 class CreateUser extends Component {
 
@@ -16,14 +16,18 @@ class CreateUser extends Component {
 
 
   onCreateClick = () => {
-    const { avatar, id, name } = this.props;
+    let { avatar, id, name } = this.props;
     let idStored = readStorage(name)
-    if (idStored) {
+    if (idStored !== null) {
       id = idStored;
-    }
+      console.warn('storedId found')
+    } else {
     id = uuidv4();
-    id = writeStorage(name, )
+    console.warn('id created', id)
+    writeStorage(name, id)}
+
     this.props.createUser({ avatar, id, name });
+    console.warn('id',id);
     this.props.navigation.navigate('CreateJoin');
   }
 

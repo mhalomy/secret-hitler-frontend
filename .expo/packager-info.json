@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19001,
-  "packagerPort": 19004,
-  "packagerPid": 1916,
-  "expoServerNgrokUrl": "https://2z-iss.dhvdiego.secret-hitler-frontend.exp.direct",
-  "packagerNgrokUrl": "https://packager.2z-iss.dhvdiego.secret-hitler-frontend.exp.direct",
-  "ngrokPid": 12464
+  "packagerPort": 19003,
+  "packagerPid": 8360,
+  "expoServerNgrokUrl": "https://w3-ku2.dhvdiego.secret-hitler-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.w3-ku2.dhvdiego.secret-hitler-frontend.exp.direct",
+  "ngrokPid": 6060
 }
