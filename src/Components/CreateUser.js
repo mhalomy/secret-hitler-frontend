@@ -5,6 +5,7 @@ import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
+import { readStorage, writeStorage } from '../storage/index';
 
 class CreateUser extends Component {
 
@@ -12,8 +13,10 @@ class CreateUser extends Component {
     avatars: avatars
   };
 
+
   onCreateClick = () => {
     const { avatar, id, name } = this.props;
+
     this.props.createUser({ avatar, id, name });
     this.props.navigation.navigate('CreateJoin');
   }
