@@ -68,7 +68,7 @@
     {
       "id": 105,
       "chancellor": false,
-      "executed": false,
+      "executed": true,
       "hitler": false,
       "president": false,
       "user": {
