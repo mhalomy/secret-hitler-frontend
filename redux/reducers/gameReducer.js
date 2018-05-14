@@ -39,6 +39,3 @@ const gameReducer = (state = initialAppState.game, action) => {
   }
   return state;
 };
-
-
-

@@ -42,6 +42,3 @@ export const vetoPolicy = (veto) => ({
   type: 'veto_policy',
   payload: veto
 })
-
-
-

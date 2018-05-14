@@ -4,14 +4,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import Test from './src/test';
 import logger from 'redux-logger';
-import WaitingScreen from './src/Screens/WaitingScreen';
 import CreateRoom from './src/Components/CreateRoom';
 import JoinRoom from './src/Components/JoinRoom';
 import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import { createBottomTabNavigator } from 'react-navigation';
-
 import WaitingRoom from './src/screens/WaitingRoom';
+import reducers from './redux/reducers';
 
 export default class App extends React.Component {
 
@@ -24,7 +23,7 @@ export default class App extends React.Component {
         screen: createBottomTabNavigator({
           Create: { screen: CreateRoom },
           Join: { screen: JoinRoom },
-          Waiting: { screen: WaitingScreen }
+          Waiting: { screen: WaitingRoom }
         }, {
           navigationOptions: {
             tabBarVisible: false

@@ -36,7 +36,7 @@ class PatientPlayers extends Component {
   }
 }
 
-export default class WaitingRoom extends Component {
+class WaitingRoom extends Component {
   constructor (props) {
     super(props)
   }
