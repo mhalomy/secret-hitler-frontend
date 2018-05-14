@@ -22,7 +22,7 @@
       "chancellor": false,
       "executed": false,
       "hitler": true,
-      "president": false,
+      "president": true,
       "user": {
         "avatar": "https://i.imgur.com/QukSoXc.png",
         "id": 101,
