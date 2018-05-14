@@ -67,3 +67,11 @@ export const vetoPolicy = (message, veto) => ({
     payload: veto
   }
 })
+
+export const agreeToVetoPolicy = (message, veto) => ({
+  type: 'veto_policy',
+  socket: {
+    message,
+    payload: veto
+  }
+})

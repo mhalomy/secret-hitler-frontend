@@ -10,10 +10,9 @@ class JaNeinVote extends Component {
   }
 
   handleVote = (event) => {
-    console.log('PARTAY')
     const { app, user } = this.props;
     this.props.socketEvent('voteOnChancellor', {user, payload: event.target.className});
-    // navigate back to board and see others' votes 
+    // navigate back to board and see others' votes
   };
 
   render() {
