@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Notification from '../Components/Notification';
 
-export default class PlayerActions extends Component {
+export default class NominateChancellor extends Component {
   render() {
     return (
       <View>
@@ -11,7 +11,7 @@ export default class PlayerActions extends Component {
         </View>
         <View>
           <Text>
-            PlayerActions
+            nominateChancellor
           </Text>
         </View>
       </View>
