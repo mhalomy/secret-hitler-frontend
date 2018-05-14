@@ -9,7 +9,7 @@ import JoinRoom from './src/Components/JoinRoom';
 import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import { createBottomTabNavigator } from 'react-navigation';
-import WaitingRoom from './src/screens/WaitingRoom';
+import WaitingRoom from './src/Screens/WaitingRoom';
 import reducers from './redux/reducers';
 
 export default class App extends React.Component {
