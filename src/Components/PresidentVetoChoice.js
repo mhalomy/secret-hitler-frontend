@@ -14,9 +14,8 @@ class PresidentVeto extends Component {
   }
 
   handleVote = (event) => {
-    console.log('PARTAY')
     const { app, user } = this.props;
-    this.props.socketEvent('aceptVeto', {user, payload: event.target.className});
+    this.props.socketEvent('agreeToVetoPolicy', {user, payload: event.target.className});
   };
 
   render() {
@@ -55,7 +54,8 @@ const styles = StyleSheet.create({
   },
 
   text: {
-
+    fontSize: 40,
+    margin: '5%',
   }
 })
 

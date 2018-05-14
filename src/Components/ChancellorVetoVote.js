@@ -14,9 +14,8 @@ class ChancellorVeto extends Component {
   }
 
   handleVote = (event) => {
-    console.log('PARTAY')
     const { app, user } = this.props;
-    this.props.socketEvent('aceptVeto', {user, payload: event.target.className});
+    this.props.socketEvent('vetoPolicy', {user, payload: event.target.className});
   };
 
   render() {

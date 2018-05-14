@@ -68,3 +68,13 @@ export const vetoPolicy = (message, veto) => ({
   }
 })
 
+<<<<<<< HEAD
+=======
+export const agreeToVetoPolicy = (message, veto) => ({
+  type: 'veto_policy',
+  socket: {
+    message,
+    payload: veto
+  }
+})
+>>>>>>> chore: remove comments and logs
