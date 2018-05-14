@@ -1,5 +1,14 @@
 {
+<<<<<<< HEAD
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null
+=======
+  "expoServerPort": 19000,
+  "packagerPort": 19002,
+  "packagerPid": 26915,
+  "expoServerNgrokUrl": "https://sx-c7x.dhvdiego.secret-hitler-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.sx-c7x.dhvdiego.secret-hitler-frontend.exp.direct",
+  "ngrokPid": 6364
+>>>>>>> feat: implement layout and initial logic for voting and veto components
 }

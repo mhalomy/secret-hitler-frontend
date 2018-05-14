@@ -8,12 +8,15 @@ import Drawer from 'react-native-drawer'
 class MainBoard extends Component {
   constructor (props) {
     super(props);
-    this.state = {drawerOpen: null};
+    this.state = {drawerOpen: null, turnCount: this.props.};
   };
 
   componentDidMount () {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+    this.checkForNewPresident();
   }
+
+  // Presentational
 
   renderElectionTracker = () => {
     return (
@@ -70,7 +73,13 @@ class MainBoard extends Component {
       }
     }
 
+  // Socket actions occuring on the main Board
+  checkForNewPresident = () => {
+    if ()
+  }
+
   render() {
+    console.log('PROOOOOOOOOOPS', this.props)
     return (
       <Drawer
       open={this.state.drawerOpen}
