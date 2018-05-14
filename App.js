@@ -14,6 +14,10 @@ import { createBottomTabNavigator } from 'react-navigation';
 import reducers from './redux/reducers';
 //import WaitingRoom from './src/screens/WaitingRoom';
 import WaitingRoom from './src/Screens/WaitingRoom';
+import JaNeinVote from './src/Components/JaNeinVote';
+import PresidentVeto from './src/Components/PresidentVetoChoice';
+
+
 
 
 export default class App extends React.Component {
@@ -46,7 +50,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducers, applyMiddleware(logger))}>
 
-        <WaitingRoom />
+        <PresidentVeto />
       </Provider>
       );
     }
