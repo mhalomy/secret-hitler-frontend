@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { ScrollView, Text, Image, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar } from 'react-native-elements';
 import EligiblePlayersItem from './EligiblePlayersItem';
@@ -14,10 +14,21 @@ class EligiblePlayers extends Component {
 
   render() {
     return (
-      <View>
-        {this.renderEligiblePlayers()}
+      <View style={styles.containerStyle} >
+        <ScrollView horizontal contentContainerStyle={styles.itemStyle} >
+          {this.renderEligiblePlayers()}
+        </ScrollView>
       </View>
     );
+  }
+}
+
+const styles = {
+  containerStyle: {
+    alignSelf: 'center'
+  },
+  itemStyle: {
+    alignItems: 'center'
   }
 }
 

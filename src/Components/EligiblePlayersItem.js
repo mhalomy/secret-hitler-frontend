@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 const EligiblePlayersItem = ({ player }) => {
@@ -8,17 +8,17 @@ const EligiblePlayersItem = ({ player }) => {
   renderPlayers = () => {
     if (!president && !executed) {
       return (
-        <View>
+        <TouchableOpacity style={styles.imageContainer} >
           <Avatar
             rounded
-            medium
+            xlarge
             resize="contain"
             source={{uri: user.avatar}}
           />
-          <Text>
+          <Text style={styles.textStyle} >
             {user.name}
           </Text>
-        </View>
+        </TouchableOpacity>
       );
     }
   }
@@ -28,6 +28,20 @@ const EligiblePlayersItem = ({ player }) => {
       {this.renderPlayers()}
     </View>
   );
+}
+
+const styles = {
+  imageContainer: {
+    margin: 5,
+    padding: 7,
+    borderWidth: 5,
+    borderRadius: 10
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '600'
+  }
 }
 
 export default EligiblePlayersItem;
