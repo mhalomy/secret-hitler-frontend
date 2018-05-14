@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
-import ElectionTracker from '../Components/ElectionTracker';
-import Board from '../Components/Board';
+import { connect } from 'react-redux';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import ElectionTracker from '../Components/electionTracker';
+import Board from '../Components/board';
+//import Drawer from 'react-native-drawer'
 
-
-export default class MainBoard extends Component {
+class MainBoard extends Component {
   constructor (props) {
     super(props)
+  }
+
+  componentDidMount () {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+  }
+
+  toggleTracker = () => {
+    this.drawer.open();
   }
 
   render () {
@@ -24,9 +33,9 @@ export default class MainBoard extends Component {
             </ImageBackground>
           </View>
         </View>
-        <View style={styles.electionTracker}>
-          <ElectionTracker />
-        </View>
+        <TouchableOpacity onTrackerPress={this.toggleTracker} style={styles.electionTracker}>
+          <ElectionTracker/>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -61,3 +70,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 })
+
+const mapStateToProps = (state) => ({
+  game: state.gameReducer.player
+})
+
+export default connect(mapStateToProps, null)(MainBoard);
+
+// <View style={styles.electionTracker}>
+//   <ElectionTracker />
+// </View>

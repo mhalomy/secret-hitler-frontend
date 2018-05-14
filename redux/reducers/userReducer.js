@@ -1,3 +1,5 @@
+import initialAppState from './initialAppState';
+
 import {
   username_changed,
   create_user,

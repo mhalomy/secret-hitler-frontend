@@ -4,6 +4,10 @@ import { Text } from 'react-native';
 
 export default class CreateJoin extends Component {
 
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   onStartClick() {
     this.props.navigation.navigate('Waiting');
   }

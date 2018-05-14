@@ -1,5 +1,4 @@
 import React from 'react';
-import UserIntro from './src/screens/UserIntro';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -12,11 +11,11 @@ import JoinRoom from './src/Components/JoinRoom';
 import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import UserIntro from './src/Screens/UserIntro';
-import MainBoard from './src/Screens/MainBoard';
+import MainBoard from './src/Screens/mainBoard';
 
 import { createBottomTabNavigator } from 'react-navigation';
 
-import reducers from './redux/reducers';
+import reducers from './redux/reducers/index.js';
 
 export default class App extends React.Component {
 
@@ -45,11 +44,11 @@ export default class App extends React.Component {
       lazy: true
     });
 
-    const store = createStore(reducers);
+    //const store = createStore(reducers);
 
     return (
       <Provider store={createStore(reducers, applyMiddleware(logger))}>
-        <MainNavigator />
+        <MainBoard />
       </Provider>
       );
     }

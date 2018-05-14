@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
-import MainBoard from './MainBoard';
+import MainBoard from './mainBoard';
 
 export default class UserIntro extends Component {
 
   goToBoard = () => {
     this.props.navigation.navigate('MainBoard');
+  }
+
+  componentWillUnmount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
   render() {

@@ -1,8 +1,10 @@
-const game =  {
+import initialAppState from './initialAppState';
+
+const game = {
   gameOver: false,
   id: undefined,
   gameState: {
-    electionFailCount: 0,
+    electionFailCount: 2,
     numberOfFascistPolicies: 0,
     numberOfFascists: 0,
     numberOfLiberalPolicies: 0,
@@ -32,7 +34,7 @@ const game =  {
   ],
 }
 
-const gameReducer = (state = initialAppState.game, action) => {
+const gameReducer = (state = game, action) => {
   switch (action.type) {
     case 'create_game':
     return action.game;
@@ -40,5 +42,4 @@ const gameReducer = (state = initialAppState.game, action) => {
   return state;
 };
 
-
-
+export default gameReducer;

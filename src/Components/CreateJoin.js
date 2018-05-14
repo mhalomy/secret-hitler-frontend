@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 
 class CreateJoin extends Component {
 
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   onCreateClick = () => {
     this.props.navigation.navigate('Create');
   }

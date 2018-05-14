@@ -12,6 +12,10 @@ class CreateUser extends Component {
     avatars: avatars
   };
 
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   onCreateClick = () => {
     const { avatar, id, name } = this.props;
     this.props.createUser({ avatar, id, name });

@@ -3,10 +3,5 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-<<<<<<< HEAD
-  "urlRandomness": "sx-c7x"
+  "urlRandomness": null
 }
-=======
-  "urlRandomness": "si-zjs"
-}
->>>>>>> 2185c16dc7071865c37bd9b5590af6eecbdb268c
