@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
+import { socketEvent } from '../../redux/actions/socket.actions';
 import UserIntro from './UserIntro';
 
 class PatientPlayers extends Component {
@@ -11,10 +12,10 @@ class PatientPlayers extends Component {
 
   renderPlayers = () => {
     let currentPlayers = [];
-    if (this.props) {
-      for (let i = 0; i < this.props.length; i++) {
-        const avatar = this.props.user.avatar;
-        const name = this.props.user.name
+    if (this.props.players) {
+      for (let i = 0; i < this.props.players.length; i++) {
+        const avatar = this.props.players[i].user.avatar;
+        const name = this.props.players[i].user.name
         currentPlayers.push(
           <View key={i} style={{display: 'flex', alignItems:'center',  margin: '5%', height: '30%', width:'40%', padding:'5%'}}>
             <Image source={require('../assets/trump.jpg')} style={{width: '30%', height: '50%'}}/>
@@ -40,8 +41,12 @@ class WaitingRoom extends Component {
     super(props)
   }
 
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   renderText = () => {
-    if (this.props.length <= 5) {
+    if (this.props.players.length <= 5) {
       return 'Waiting for more players'
     } else {
       return 'All set, now divide and conquer!'
@@ -49,11 +54,11 @@ class WaitingRoom extends Component {
   }
 
   startGame = () => {
-    this.props.navigation.navigate('UserIntro')
+    this.props.socketEvent('startGame', {gameId: this.props.game.id})
   }
 
   renderButton = () => {
-    if (this.props.length < 3) {
+    if (this.props.players.length > 6) {
       return (
         <TouchableOpacity disabled={true}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
@@ -68,7 +73,7 @@ class WaitingRoom extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
@@ -149,7 +154,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  playerList: state.game.playerList
+  game: state.gameReducer,
+  players: state.gameReducer.playerList
 })
 
-export default connect(mapStateToProps, null)(WaitingRoom);
+const mapDispatchToProps = (dispatch) => ({
+  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);

@@ -1,4 +1,6 @@
-const game =  {
+import initialAppState from './initialAppState';
+
+const game = {
   gameOver: false,
   id: undefined,
   gameState: {
@@ -25,19 +27,21 @@ const game =  {
       president: false,
       user: {
         avatar: undefined,
-        id: undefined,
-        name: undefined,
+        id: 'AHAHAHAHAA',
+        name: 'FUCK',
       }
     },
   ],
 }
 
-const gameReducer = (state = initialAppState.game, action) => {
+
+export default gameReducer = (state = game, action) => {
   switch (action.type) {
     case 'create_game':
-    return action.game;
-    case 'suggest_chancellor':
-    return action.player;
+    return {
+      ...state,
+      game: action.payload
+    }
   }
   return state;
 };
