@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { connect } from 'react-redux';
 import { socketEvent} from '../../redux/actions/socket.actions';
-import MainBoard from '../Screens/mainBoard'
+import MainBoard from '../screens/mainBoard'
 
 class JaNeinVote extends Component {
   constructor (props) {

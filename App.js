@@ -9,13 +9,13 @@ import JoinRoom from './src/Components/JoinRoom';
 import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import JaNeinVote from './src/Components/JaNeinVote';
-import UserIntro from './src/Screens/UserIntro';
-import MainBoard from './src/Screens/mainBoard';
+import UserIntro from './src/screens/UserIntro';
+import MainBoard from './src/screens/mainBoard';
 import { createBottomTabNavigator } from 'react-navigation';
 import reducers from './redux/reducers';
-import WaitingRoom from './src/Screens/WaitingRoom';
-import JaNeinVote from './src/Components/JaNeinVote';
+import WaitingRoom from './src/screens/WaitingRoom';
 import PresidentVeto from './src/Components/PresidentVetoChoice';
+import VoteOnChancellor from './src/screens/VoteOnChancellor';
 
 
 
