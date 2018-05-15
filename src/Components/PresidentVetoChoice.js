@@ -13,18 +13,24 @@ class PresidentVeto extends Component {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
-  handleVote = (event) => {
+  acceptVeto = () => {
+    console.log('I ACCEPT!', this.props);
     const { app, user } = this.props;
-    this.props.socketEvent('agreeToVetoPolicy', {user, payload: event.target.className});
-  };
+    this.props.socketEvent('givePresidentChanceToConfirmVeto', {playerId: user.id, gameId: app.gameId, veto:true});
+  }
+
+  rejectVeto = () => {
+    const { app, user } = this.props;
+    this.props.socketEvent('givePresidentChanceToConfirmVeto', {playerId: user.id, gameId: app.gameId, veto:false});
+  }
 
   render() {
     return (
-      <View style={styles.voteContainer} onPress={this.handleVote}>
-        <TouchableOpacity className='accept' style={styles.vote}>
-          <Text style={styles.text}> I agree to the veto </Text>
+      <View style={styles.voteContainer}>
+        <TouchableOpacity value='accept' onPress={this.acceptVeto} style={styles.vote}>
+          <Text style={styles.text}> I agree to the veto. </Text>
         </TouchableOpacity>
-        <TouchableOpacity className='abstain' onPress={this.handleVote} style={styles.vote}>
+        <TouchableOpacity value='abstain' onPress={this.rejectVeto} style={styles.vote}>
           <Text style={styles.text}> Nope, I disagree. </Text>
         </TouchableOpacity>
       </View>
@@ -36,7 +42,7 @@ const styles = StyleSheet.create({
   voteContainer: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'red',
+    backgroundColor: '#8B4513',
     alignItems: 'center',
     height: '100%',
     width: '100%',
@@ -47,7 +53,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'yellow',
+    backgroundColor: '#CD5C5C',
     height: '70%',
     width: '100%',
     margin: '2%',
