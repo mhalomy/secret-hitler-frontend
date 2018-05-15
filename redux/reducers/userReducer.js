@@ -11,6 +11,7 @@ const user = {
   id: undefined,
   name: undefined,
 }
+
 export default userReducer = (state = user, action) => {
   switch (action.type) {
     case 'username_changed':

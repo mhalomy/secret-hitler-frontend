@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { createGame } from '../../redux/actions/gameActions';
+
 
 class CreateJoin extends Component {
 
@@ -10,7 +12,8 @@ class CreateJoin extends Component {
   }
 
   onCreateClick = () => {
-    this.props.navigation.navigate('Create');
+    this.props.createGame()
+    //this.props.navigation.navigate('Create');
   }
 
   onJoinClick = () => {
@@ -58,4 +61,12 @@ const mapStateToProps = ({ userReducer }) => {
   }
 }
 
-export default connect(mapStateToProps, {})(CreateJoin);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createGame: (game) => dispatch(createGame(game))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateJoin);
+

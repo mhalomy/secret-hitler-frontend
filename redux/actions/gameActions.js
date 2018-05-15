@@ -3,45 +3,68 @@ export const createGame = (game) => ({
   payload: game
 })
 
-export const joinGame = (game) => ({
+
+export const joinGame = (message, game) => ({
   type: 'join_game',
-  payload: game
+  socket: {
+    message,
+    payload: game
+  }
 })
 
-export const startGame = (game) => ({
+export const startGame = (message, game) => ({
   type: 'start_game',
-  payload: game
+  socket: {
+    message,
+    payload: game
+  }
 })
 
-export const leaveGame = (game) => ({
+export const leaveGame = (message, game) => ({
   type: 'leave_game',
-  payload: game
+  socket: {
+    message,
+    payload: game
+  }
 })
 
-export const suggestChancellor = (player) => ({
+export const suggestChancellor = (message, player) => ({
   type: 'suggest_chancellor',
-  payload: player
+  socket: {
+    message,
+    payload: player
+  }
 })
 
-export const voteOnChancellor = (vote) => ({
+export const voteOnChancellor = (message, vote) => ({
   type: 'vote_on_chancellor',
-  payload: vote
+  socket: {
+      message,
+      payload: vote
+    }
 })
 
-export const pickPolicies = (policies) => ({
+export const pickPolicies = (message, policies) => ({
   type: 'pick_policies',
-  payload: policies
+  socket: {
+    message,
+    payload: policies
+  }
 })
 
-export const executePlayer = (player) => ({
+export const executePlayer = (message, player) => ({
   type: 'execute_player',
-  payload: player
+  socket: {
+    message,
+    payload: player
+  }
 })
 
-export const vetoPolicy = (veto) => ({
+export const vetoPolicy = (message, veto) => ({
   type: 'veto_policy',
-  payload: veto
+  socket: {
+    message,
+    payload: veto
+  }
 })
-
-
 
