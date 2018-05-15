@@ -4,7 +4,7 @@ const game = {
   gameOver: false,
   id: undefined,
   gameState: {
-    electionFailCount: 2,
+    electionFailCount: 0,
     numberOfFascistPolicies: 0,
     numberOfFascists: 0,
     numberOfLiberalPolicies: 0,
@@ -27,8 +27,8 @@ const game = {
       president: false,
       user: {
         avatar: undefined,
-        id: undefined,
-        name: undefined,
+        id: 'AHAHAHAHAA',
+        name: 'FUCK',
       }
     },
   ],
@@ -45,5 +45,3 @@ export default gameReducer = (state = game, action) => {
   }
   return state;
 };
-
-
