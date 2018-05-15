@@ -36,6 +36,8 @@ const gameReducer = (state = initialAppState.game, action) => {
   switch (action.type) {
     case 'create_game':
     return action.game;
+    case 'suggest_chancellor':
+    return action.player;
   }
   return state;
 };

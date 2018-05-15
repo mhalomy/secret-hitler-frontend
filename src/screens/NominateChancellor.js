@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Notification from '../Components/Notification';
 import EligiblePlayers from '../Components/EligiblePlayers';
+import { Button } from '../Components/Common';
 
 export default class NominateChancellor extends Component {
   render() {
@@ -16,4 +17,5 @@ export default class NominateChancellor extends Component {
       </View>
     );
   }
+
 }

@@ -1,2 +1,3 @@
 export * from './socket.actions';
-export * from './userAction.js';
+export * from './userAction';
+export * from './gameActions';
