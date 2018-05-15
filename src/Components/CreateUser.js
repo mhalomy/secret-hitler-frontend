@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextInput, View, Text, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView, TouchableHighlight } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
+import { readStorage, writeStorage } from '../../redux/storage';
+import uuidv4 from 'uuid/v4';
 
 class CreateUser extends Component {
 
@@ -15,10 +17,19 @@ class CreateUser extends Component {
   componentDidMount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   }
-
-  onCreateClick = () => {
-    const { avatar, id, name } = this.props;
+  onCreateClick = async () => {
+    let { avatar, id, name } = this.props;
+    let idStored = await readStorage('uuid')
+    if (idStored !== null) {
+      id = idStored;
+      console.warn('storedId found')
+    } else {
+      id = uuidv4();
+      console.warn('id created', id)
+      writeStorage('uuid', id)
+    }
     this.props.createUser({ avatar, id, name });
+    console.warn('id',id);
     this.props.navigation.navigate('CreateJoin');
   }
 
@@ -35,14 +46,16 @@ class CreateUser extends Component {
     return this.state.avatars.map((avatar, i) => {
       return (
         <View key={i}>
-          <Avatar
-            containerStyle={{alignSelf: 'center', marginBottom: 20}}
-            large
-            rounded
-            source={{ uri: avatar.img }}
-            onPress={this.onAvatarPressed.bind(this, avatar)}
-            activeOpacity={0.7}
-          />
+          <TouchableHighlight>
+            <Avatar
+              containerStyle={{alignSelf: 'center', marginBottom: 20}}
+              large
+              rounded
+              source={{ uri: avatar.img }}
+              onPress={this.onAvatarPressed.bind(this, avatar)}
+              activeOpacity={0.7}
+            />
+          </TouchableHighlight>
         </View>
       );
     });
