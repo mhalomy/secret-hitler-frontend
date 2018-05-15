@@ -25,7 +25,8 @@ class EligiblePlayers extends Component {
 
 const styles = {
   containerStyle: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    backgroundColor: '#3d302d'
   },
   itemStyle: {
     alignItems: 'center'

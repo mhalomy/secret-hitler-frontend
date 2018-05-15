@@ -4,9 +4,9 @@ import { View, Text } from 'react-native';
 export default class Notification extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.containerStyle} >
         <Text style={styles.notificationTextStyle} >
-          Notification here
+          Time to nominate a chancellor!
         </Text>
       </View>
     );
@@ -15,6 +15,12 @@ export default class Notification extends Component {
 
 const styles = {
   notificationTextStyle: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#843622',
+    fontWeight: '500'
+  },
+  containerStyle: {
+    backgroundColor: '#f2f09f'
   }
 }

@@ -34,13 +34,14 @@ const styles = {
   imageContainer: {
     margin: 5,
     padding: 7,
-    borderWidth: 5,
-    borderRadius: 10
+    borderRadius: 10,
+    backgroundColor: 'white'
   },
   textStyle: {
     textAlign: 'center',
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
+    color: '#3d302d'
   }
 }
 
