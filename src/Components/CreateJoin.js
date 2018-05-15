@@ -31,7 +31,6 @@ class CreateJoin extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
         <Card>
           <HomeImage />
