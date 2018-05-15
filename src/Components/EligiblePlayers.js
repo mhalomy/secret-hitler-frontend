@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar } from 'react-native-elements';
 import EligiblePlayersItem from './EligiblePlayersItem';
 import { Button } from './Common';
-import { suggestChancellor } from '../../redux/actions';
+import { socketEvent } from '../../redux/actions';
 
 class EligiblePlayers extends Component {
 
@@ -13,9 +12,9 @@ class EligiblePlayers extends Component {
   }
 
   onNominateChancellor = () => {
-    const player = this.state.currentlySelected;
+    const playerId = this.state.currentlySelected.user.id;
     if(this.state.currentlySelected !== undefined) {
-      this.props.suggestChancellor(player);
+      this.props.socketEvent('suggestChancellor', { gameId: this.props.game.id, playerId: playerId });
     }
   };
 
@@ -91,10 +90,15 @@ const styles = {
     margin: 10,
     borderRadius: 0
   }
-}
+};
 
-const mapStateToProps = (state) => {
-  return state.playerListReducer;
-}
+const mapStateToProps = (state) => ({
+  game: state.gameReducer,
+  players: state.gameReducer.playerList
+});
 
-export default connect(mapStateToProps, { suggestChancellor })(EligiblePlayers);
+const mapDispatchToProps = (dispatch) => ({
+  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EligiblePlayers);
