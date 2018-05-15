@@ -7,6 +7,10 @@ import { createGame } from '../../redux/actions/gameActions';
 
 class CreateJoin extends Component {
 
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   onCreateClick = () => {
     this.props.createGame()
     //this.props.navigation.navigate('Create');
@@ -57,6 +61,7 @@ const mapStateToProps = ({ userReducer }) => {
   }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createGame: (game) => dispatch(createGame(game))
@@ -64,3 +69,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJoin);
+

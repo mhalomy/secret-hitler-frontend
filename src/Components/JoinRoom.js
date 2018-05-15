@@ -4,6 +4,10 @@ import { TextInput } from 'react-native';
 
 export default class JoinRoom extends Component {
 
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   onJoinClick() {
     this.props.navigation.navigate('Waiting');
   }
