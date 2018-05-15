@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import Notification from '../Components/Notification';
+import { View, Text } from 'react-native';
 import EligiblePlayers from '../Components/EligiblePlayers';
 import { Button } from '../Components/Common';
 
 export default class NominateChancellor extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.containerStyle} >
         <View>
-          <Notification />
+          <Text style={styles.notificationTextStyle} >
+            Time to nominate a chancellor!
+          </Text>
         </View>
         <View>
           <EligiblePlayers />
@@ -17,5 +18,16 @@ export default class NominateChancellor extends Component {
       </View>
     );
   }
+}
 
+const styles = {
+  notificationTextStyle: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#843622',
+    fontWeight: '500'
+  },
+  containerStyle: {
+    backgroundColor: '#f2f09f'
+  }
 }
