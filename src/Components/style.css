@@ -1,0 +1,97 @@
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-color: #f3ffe6;
+  max-width: 1500px;
+  align-content: center;
+}
+
+.sidebar {
+  width: 100px;
+  background-color: teal;
+  justify-content: flex-start;
+  border: strong;
+  width: 30%;
+}
+
+.log {
+  align-self: center;
+  position: relative;
+  height: 500px;
+  width: 500px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.received {
+  display: inline-block;
+  align-items: flex-start;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 200, 0.5);
+  padding: 20px;
+  margin: 10px;
+  max-width: 400px;
+}
+
+.sent {
+  align-self: flex-end;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: rgba(200, 200, 200, 0.5);
+  padding: 10px;
+  margin: 10px;
+  max-width: 400px;
+}
+
+
+#userdock {
+  align-self: bottom;
+  position: fixed;
+  bottom: 0;
+  height: 65px;
+  background-color: lightsteelblue;
+}
+
+/* #container {
+  display: flex;
+  max-width: 1200px;
+  font-family: sans-serif;
+  background: linear-gradient(to right, snow, white smoke);
+}
+
+/* #sidebar {
+  width: 100px;
+  background-color: teal;
+  flex-direction: left;
+} */
+
+/* #primary {
+  display: flex;
+  margin-left: 200px;
+  height: inherit
+}
+
+#log {
+  height: 80%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#composer {
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 70%;
+}
+
+
+#input {
+  width: 80%;
+  height: 20px;
+  padding-top: -20px;
+  margin-left: 10px;
+} */

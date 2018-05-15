@@ -14,7 +14,9 @@ class CreateUser extends Component {
     avatars: avatars
   };
 
-
+  componentDidMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
   onCreateClick = async () => {
     let { avatar, id, name } = this.props;
     let idStored = await readStorage('uuid')
@@ -26,7 +28,6 @@ class CreateUser extends Component {
       console.warn('id created', id)
       writeStorage('uuid', id)
     }
-
     this.props.createUser({ avatar, id, name });
     console.warn('id',id);
     this.props.navigation.navigate('CreateJoin');

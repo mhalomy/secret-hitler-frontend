@@ -1,3 +1,5 @@
+import initialAppState from './initialAppState';
+
 import {
   username_changed,
   create_user,
@@ -9,6 +11,7 @@ const user = {
   id: undefined,
   name: undefined,
 }
+
 export default userReducer = (state = user, action) => {
   switch (action.type) {
     case 'username_changed':

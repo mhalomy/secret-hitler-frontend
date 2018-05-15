@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { connect } from 'react-redux'
+import { View, Text, Image, StyleSheet, Button} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import { connect } from 'react-redux';
+import MainBoard from './mainBoard';
 
-class UserIntro extends Component {
+export default class UserIntro extends Component {
+
+  goToBoard = () => {
+    this.props.navigation.navigate('MainBoard');
+  }
+
+  componentWillUnmount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+  }
 
   render() {
     let roleImage =
     this.props.role === 'liberal' ? require('../assets/liberal.jpg') :
     this.props.role === 'fascist' ? require('../assets/fascist.jpg') :
-    require('../assets/trump.jpg')
+    require('../assets/fascist.jpg')
     return (
     <View style={styles.parent}>
       {/* DO WE WANT ANY TEXT IN HERE??? <Text>Hello World</Text> */}
@@ -16,6 +26,11 @@ class UserIntro extends Component {
       <Image
         source={roleImage}
         style={styles.imageStyle}
+      />
+
+      <Button
+        title="GOTCHA"
+        onPress={this.goToBoard}
       />
     </View>
     )
@@ -38,12 +53,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const timeout = setTimeout(()=> console.warn('Switch to next screen'), 5000);
+// const timeout = setTimeout(()=> {
+//
+// }, 3000);
 
-const mapStateToProps = state => {
-  return {
-    role: 'liberal'
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     role: 'liberal'
+//   }
+// }
 
-export default connect(mapStateToProps, null)( UserIntro);
+// export default connect(mapStateToProps, null)( UserIntro);
