@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
@@ -21,7 +21,7 @@ const EligiblePlayersItem = (props) => {
         </TouchableOpacity>
       );
     }
-  }
+  };
 
   return (
     <View>
@@ -43,6 +43,6 @@ const styles = {
     fontWeight: '600',
     color: '#3d302d'
   }
-}
+};
 
 export default EligiblePlayersItem;

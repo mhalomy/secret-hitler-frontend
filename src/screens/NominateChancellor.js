@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import EligiblePlayers from '../Components/EligiblePlayers';
-import { Button } from '../Components/Common';
 
 export default class NominateChancellor extends Component {
   render() {
@@ -38,4 +37,4 @@ const styles = {
     backgroundColor: '#3d302d',
     justifyContent: 'center'
   }
-}
+};

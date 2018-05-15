@@ -37,7 +37,7 @@ class EligiblePlayers extends Component {
   };
 
   renderEligiblePlayers() {
-    return this.props.playerList.map((player) =>
+    return this.props.players.map((player) =>
       <EligiblePlayersItem
         key={player.id}
         player={player}
