@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
-import { startGame } from '../../redux/actions/gameActions';
+import { socketEvent } from '../../redux/actions/socket.actions';
 
 import UserIntro from './UserIntro';
 
@@ -13,10 +13,10 @@ class PatientPlayers extends Component {
 
   renderPlayers = () => {
     let currentPlayers = [];
-    if (this.props) {
-      for (let i = 0; i < this.props.length; i++) {
-        const avatar = this.props[i].user.avatar;
-        const name = this.props[i].user.name
+    if (this.props.players) {
+      for (let i = 0; i < this.props.players.length; i++) {
+        const avatar = this.props.players[i].user.avatar;
+        const name = this.props.players[i].user.name
         currentPlayers.push(
           <View key={i} style={{display: 'flex', alignItems:'center',  margin: '5%', height: '30%', width:'40%', padding:'5%'}}>
             <Image source={require('../assets/trump.jpg')} style={{width: '30%', height: '50%'}}/>
@@ -43,24 +43,19 @@ class WaitingRoom extends Component {
   }
 
   renderText = () => {
-    if (this.props.playerList.length <= 5) {
+    if (this.props.players.length <= 5) {
       return 'Waiting for more players'
     } else {
       return 'All set, now divide and conquer!'
     }
   }
 
-
-  startGame = (dispatch) => (message, gameId) => {
-    // if (this.props.length === 5) {
-      // this.props.navigation.navigate('UserIntro')
-      console.log('LETS START THIS GAME', gameId)
-      dispatch(socketStartGame(game))
-    //}
+  startGame = () => {
+    this.props.socketEvent('startGame', {gameId: this.props.game.id})
   }
 
   renderButton = () => {
-    if (this.props.length > 6) {
+    if (this.props.players.length > 6) {
       return (
         <TouchableOpacity disabled={true}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
@@ -68,15 +63,14 @@ class WaitingRoom extends Component {
       )
     } else {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.startGame}>
           <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
         </TouchableOpacity>
       )
     }
   }
 
-  render() {
-    console.log('STATE', this.props)
+  render () {
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
@@ -158,14 +152,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
-  playerList: state
+const mapStateToProps = (state) => ({
+  game: state.gameReducer,
+  players: state.gameReducer.playerList
 })
 
-const mapDispatchToProps = (game) => {
-  return {
-    createGame: (game) => dispatch(createGame(game))
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+})
 
-export default connect(mapStateToProps, null)(WaitingRoom);
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);

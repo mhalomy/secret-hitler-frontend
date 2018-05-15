@@ -1,50 +1,35 @@
 import io from 'socket.io-client';
 
-const socket = store => next => action => {
-  if(!action.socket) return next(action);
+const socket = url => store => {
+  let socket = io(url);
 
-  const {message, payload} = action.socket;
-
-  const socket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000');
-
-  socket.on('metaChannel', game => {
-    if (game.id) {
-      store.dispatch({
-        type: action.type + '_success',
-        game,
-      })
-    } else {
-      console.error(game);
-      store.dispatch({
-        type: action.type + '_failure',
-        game,
-      })
-    }
+  socket.on('message', data => {
+    store.dispatch({
+      type: data.type + '_received',
+      data: data.payload,
+    })
   });
 
-  socket.emit('metaChannel', message, payload, res => console.log(res));
-
-  socket.on('gameChannel', game => {
-    if (game.id) {
-      store.dispatch({
-        type: action.type + '_success',
-        game,
-      })
-    } else {
-      console.error(game);
-      store.dispatch({
-        type: action.type + '_failure',
-        game,
-      })
-    }
+  socket.on('exception', data => {
+    console.error(data.error);
+    store.dispatch({
+      type: data.type + '_error',
+      error: data.error,
+    })
   });
 
-  socket.emit('gameChannel', message, payload, res => console.log(res));
+  return next => action => {
+    if(!action.socket) return next(action);
 
-  next({
-    ...action,
-    type: action.type + '_pending'
-  });
+    const {message, payload} = action.socket;
+
+    socket.emit('message', message, payload);
+
+    next({
+      ...action,
+      type: action.type + '_sent'
+    });
+  }
 }
 
-export default socket;
+export default socket; 
