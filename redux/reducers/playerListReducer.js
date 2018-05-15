@@ -1,3 +1,3 @@
-import gameStateMock from '../../src/GameStateMock.json';
-
-export default () => gameStateMock;
+// import gameStateMock from '../../src/GameStateMock.json';
+//
+// export default () => gameStateMock;

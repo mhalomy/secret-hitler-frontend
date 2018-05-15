@@ -42,6 +42,10 @@ class WaitingRoom extends Component {
     super(props)
   }
 
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   renderText = () => {
     if (this.props.players.length <= 5) {
       return 'Waiting for more players'

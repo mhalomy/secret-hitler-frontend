@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
-import { startGame } from '../../redux/actions/gameActions';
+import { socketEvent} from '../../redux/actions/socket.actions';
+import MainBoard from '../Screens/mainBoard'
 
 class JaNeinVote extends Component {
   constructor (props) {
     super(props)
   }
 
-  handleVote = (event) => {
+  getCurrentPlayerId = () => {
+    this.props.players.filter(player => {
+      if (player.user.id === this.props.user.id) {
+        return id;
+      }
+    })
+  }
+
+  handleJaVote = () => {
     const { app, user } = this.props;
-    this.props.socketEvent('voteOnChancellor', {user, payload: event.target.className});
+    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'ja'});
+    this.props.navigation.navigate('MainBoard');
     // navigate back to board and see others' votes
   };
 
+  handleNeinVote = () => {
+    const { app, user } = this.props;
+    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'nein'});
+    this.props.navigation.navigate('MainBoard');
+    // navigate back to board and see others' votes
+  };
+
+
   render() {
     return (
-      <View style={styles.voteContainer} onPress={this.handleVote}>
-        <TouchableOpacity className='JA' style={styles.vote}>
+      <View style={styles.voteContainer}>
+        <TouchableOpacity className='JA' style={styles.vote} onPress={this.handleJaVote}>
           <ImageBackground source={require('../assets/JA.png')} style={{flex: 1, width:'100%'}} />
         </TouchableOpacity>
-        <TouchableOpacity className='NEIN' onPress={this.handleVote} style={styles.vote}>
+        <TouchableOpacity className='NEIN' onPress={this.handleNeinVote} style={styles.vote}>
           <ImageBackground source={require('../assets/NEIN.png')} style={{flex: 1, width:'100%'}} />
         </TouchableOpacity>
       </View>
@@ -50,9 +67,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    app: state.app,
-    user: state.user,
-    game: state.game,
+    game: state.gameReducer,
+    players: state.gameReducer.playerList,
+    user: state.userReducer
   };
 };
 

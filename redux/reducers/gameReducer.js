@@ -27,8 +27,8 @@ const game = {
       president: false,
       user: {
         avatar: undefined,
-        id: undefined,
-        name: undefined,
+        id: 'AHAHAHAHAA',
+        name: 'FUCK',
       }
     },
   ],
