@@ -4,11 +4,12 @@ export const readStorage = async (key) => {
   try {
     let val = await AsyncStorage.getItem(key);
     if (val !== null) {
+      console.warn('asyncstorage val', val);
       let readVal = JSON.parse(val);
       return readVal;}
     else {
-      console.info(`${key} not found on disk`);
-      return;
+      console.warn(`${key} not found on disk`);
+      return null;
     }
   } catch (error) {
     console.warn("AsyncStorage error: ", error.message);

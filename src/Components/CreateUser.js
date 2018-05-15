@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
-import { readStorage, writeStorage } from '../storage/index';
+import { readStorage, writeStorage } from '../../redux/storage';
 import uuidv4 from 'uuid/v4';
 
 class CreateUser extends Component {
@@ -15,16 +15,17 @@ class CreateUser extends Component {
   };
 
 
-  onCreateClick = () => {
+  onCreateClick = async () => {
     let { avatar, id, name } = this.props;
-    let idStored = readStorage(name)
+    let idStored = await readStorage('uuid')
     if (idStored !== null) {
       id = idStored;
       console.warn('storedId found')
     } else {
-    id = uuidv4();
-    console.warn('id created', id)
-    writeStorage(name, id)}
+      id = uuidv4();
+      console.warn('id created', id)
+      writeStorage('uuid', id)
+    }
 
     this.props.createUser({ avatar, id, name });
     console.warn('id',id);
