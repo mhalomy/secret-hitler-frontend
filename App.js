@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import Test from './src/test';
 import logger from 'redux-logger';
 
 import WaitingRoom from './src/Screens/WaitingRoom';
@@ -44,7 +43,6 @@ export default class App extends React.Component {
       lazy: true
     });
 
-    //const store = createStore(reducers);
 
     return (
       <Provider store={createStore(reducers, applyMiddleware(logger))}>

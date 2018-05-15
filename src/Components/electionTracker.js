@@ -26,20 +26,12 @@ class ElectionTracker extends Component {
 
   render () {
     return (
-      <Drawer
-        ref={(ref) => this._drawer = ref}
-        style={styles.electionTracker}
-        onPress={this.props.onTrackerPress}
-        >
+      <View style={styles.electionTracker}>
         {this.renderTrackers()}
-      </Drawer>
+      </View>
     )
   }
 }
-
-// <View style={styles.electionTracker}>
-//   {this.renderTrackers()}
-// </View>
 
 const styles = StyleSheet.create({
   electionTracker: {
