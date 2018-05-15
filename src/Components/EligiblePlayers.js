@@ -88,8 +88,7 @@ const styles = {
     paddingBottom: 5
   },
   buttonStyle: {
-    marginLeft: 5,
-    marginRight: 5,
+    margin: 10,
     borderRadius: 0
   }
 }
