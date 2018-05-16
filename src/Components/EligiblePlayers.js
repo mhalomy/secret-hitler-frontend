@@ -14,9 +14,26 @@ class EligiblePlayers extends Component {
   onNominateChancellor = () => {
     const playerId = this.state.currentlySelected.user.id;
     if(this.state.currentlySelected !== undefined) {
-      this.props.socketEvent('suggestChancellor', { gameId: this.props.game.id, playerId: playerId });
+      this.props.socketEvent({
+        type: 'suggestChancellor',
+        payload: {
+          gameId: this.props.game.id,
+          playerId: playerId
+        }
+      });
+      // this.props.navigation.navigate('');
     }
   };
+
+  startGame = () => {
+    this.props.socketEvent({
+      type: 'startGame',
+      payload: {
+        gameId: this.props.game.id
+      }
+    })
+    this.props.navigation.navigate('MainBoard');
+  }
 
   onPlayerPress = ({chancellor, executed, hitler, id, president, user}) => {
     this.setState({
