@@ -4,8 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MainBoard from './mainBoard';
 
-export default class UserIntro extends Component {
-
+class UserIntro extends Component {
   goToBoard = () => {
     this.props.navigation.navigate('MainBoard');
   }
@@ -14,19 +13,26 @@ export default class UserIntro extends Component {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
+  renderRoleCard = () => {
+    for (let i = 0; i < this.props.players.length; i++) {
+      const player = this.props.players[i];
+      if (this.props.user.id === player.user.id) {
+        if (player.hitler) {
+          return <Image source={require('../assets/trump.jpg')} style={styles.imageStyle} />
+        } else if (player.faction === 'liberal') {
+          return <Image source={require('../assets/liberal.jpg')} style={styles.imageStyle} />
+        } else {
+          return <Image source={require('../assets/fascist.jpg')} style={styles.imageStyle} />
+        }
+      }
+    }
+  }
+
   render() {
-    let roleImage =
-    this.props.role === 'liberal' ? require('../assets/liberal.jpg') :
-    this.props.role === 'fascist' ? require('../assets/fascist.jpg') :
-    require('../assets/fascist.jpg')
     return (
     <View style={styles.parent}>
-      {/* DO WE WANT ANY TEXT IN HERE??? <Text>Hello World</Text> */}
+      {this.renderRoleCard()}
 
-      <Image
-        source={roleImage}
-        style={styles.imageStyle}
-      />
 
       <Button
         title="GOTCHA"
@@ -53,14 +59,10 @@ const styles = StyleSheet.create({
   },
 });
 
-// const timeout = setTimeout(()=> {
-//
-// }, 3000);
+const mapStateToProps = (state) => ({
+  user: state.user,
+  players: state.game.playerList,
+  role: state.game.playerList.faction
+})
 
-// const mapStateToProps = state => {
-//   return {
-//     role: 'liberal'
-//   }
-// }
-
-// export default connect(mapStateToProps, null)( UserIntro);
+export default connect(mapStateToProps, null)( UserIntro);
