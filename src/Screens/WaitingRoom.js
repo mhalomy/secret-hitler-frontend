@@ -66,6 +66,7 @@ class WaitingRoom extends Component {
   }
 
   render () {
+    console.log('PLAYER LIST & LENGTH ----------------- > ', this.props.players, this.props.players.length)
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>

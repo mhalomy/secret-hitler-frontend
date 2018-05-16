@@ -17,9 +17,6 @@ import WaitingRoom from './src/Screens/WaitingRoom';
 import PresidentVeto from './src/Components/PresidentVetoChoice';
 import VoteOnChancellor from './src/Screens/VoteOnChancellor';
 
-
-
-
 export default class App extends React.Component {
 
   render() {
@@ -53,7 +50,7 @@ export default class App extends React.Component {
 
 
     return (
-      <Provider store={createStore(reducers, applyMiddleware(socket('http://Lucies-MacBook-Air.local:3000')))}>
+      <Provider store={createStore(reducers, applyMiddleware(socket('http://192.168.1.165:3000')))}>
         <MainNavigator />
       </Provider>
       );
