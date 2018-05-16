@@ -23,12 +23,6 @@ class MainBoard extends Component {
     )
   }
 
-  renderTriangle = () => {
-    return (
-      <View style={styles.triangleLeft}/>
-    )
-  }
-
   renderMainContent = () => {
     if(!this.state.drawerOpen) {
       return (

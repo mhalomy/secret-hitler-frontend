@@ -21,7 +21,7 @@ class PlayerList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.playerListReducer;
+  playerList: state.game.playerList
 }
 
 export default connect(mapStateToProps, {})(PlayerList);

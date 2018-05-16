@@ -26,7 +26,7 @@ class WaitingRoom extends Component {
         gameId: this.props.game.id
       }
     })
-    this.props.navigation.navigate('MainBoard');
+    this.props.navigation.navigate('UserIntro');
   }
 
   renderButton = () => {
@@ -63,7 +63,6 @@ class WaitingRoom extends Component {
   }
 
   render () {
-    console.log('proooooops ========', this.props.players)
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
