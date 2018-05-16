@@ -18,7 +18,14 @@ class ExecutePlayer extends Component {
   onExecutePlayer = () => {
     const playerId = this.state.currentlySelected.user.id;
     if(this.state.currentlySelected !== undefined) {
-      this.props.socketEvent('executePlayer', { gameId: this.props.game.id, playerId: playerId });
+      this.props.socketEvent({
+        type: 'executePlayer',
+        payload: {
+          gameId: this.props.game.id,
+          playerId: playerId
+        }
+      });
+      // this.props.navigation.navigate('')
     }
   };
 
