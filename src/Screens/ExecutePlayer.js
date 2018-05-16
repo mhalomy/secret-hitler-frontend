@@ -9,15 +9,18 @@ class ExecutePlayer extends Component {
 
   state = {
     currentlySelected: undefined
-  }
+  };
 
   componentDidMount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
   onExecutePlayer = () => {
-
-  }
+    const playerId = this.state.currentlySelected.user.id;
+    if(this.state.currentlySelected !== undefined) {
+      this.props.socketEvent('executePlayer', { gameId: this.props.game.id, playerId: playerId });
+    }
+  };
 
   onPlayerPress = ({user}) => {
     this.setState({
@@ -26,7 +29,7 @@ class ExecutePlayer extends Component {
   };
 
   renderPlayers = () => {
-    return this.props.gameMock.playerList.map((player) => {
+    return this.props.players.map((player) => {
       if (!player.executed && !player.president) {
         return (
           <TouchableOpacity key={player.user.id} onPress={this.onPlayerPress.bind(this, player)} style={styles.imageContainer} >
@@ -43,7 +46,7 @@ class ExecutePlayer extends Component {
         );
       }
     });
-  }
+  };
 
   renderSelectedPlayer = () => {
     if (this.state.currentlySelected !== undefined) {
@@ -58,7 +61,6 @@ class ExecutePlayer extends Component {
   };
 
   render() {
-
     return (
       <View style={styles.containerStyle} >
         <View style={styles.notificationContainerStyle} >
@@ -130,7 +132,11 @@ const styles = {
 
 const mapStateToProps = (state) => ({
   game: state.gameReducer,
-  gameMock: state.playerListReducer
+  players: state.gameReducer.playerList
 });
 
-export default connect(mapStateToProps, {})(ExecutePlayer);
+const mapDispatchToProps = (dispatch) => ({
+  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExecutePlayer);
