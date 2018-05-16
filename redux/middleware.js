@@ -6,7 +6,6 @@ const socket = url => store => {
 
   socket.on('data', data => {
     const {type, payload} = data;
-    console.log('PAYLOADDDDDD', payload)
     store.dispatch({
       type: type + '_received',
       payload,

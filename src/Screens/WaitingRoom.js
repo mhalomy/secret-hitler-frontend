@@ -3,12 +3,15 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Butto
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import { socketEvent } from '../../redux/actions/socket.actions';
-
 import UserIntro from './UserIntro';
 
 class WaitingRoom extends Component {
   constructor (props) {
     super(props)
+  }
+
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   }
 
   renderText = () => {
@@ -77,11 +80,9 @@ class WaitingRoom extends Component {
             <Text style={{ fontSize: 42, color: 'red', fontWeight: '900', margin: '5%', width:'100%', height: '100%', textShadowColor: 'black', textShadowOffset: {width: 10, height: 10}, textShadowRadius: 8}}>{this.renderText()}</Text>
           </View>
 
-          if (user.id === initiator.id) {
             <View style={styles.startButton}>
               {this.renderButton()}
             </View>
-          }
 
           <View style={styles.tipsContainer}>
             <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}> Tip: Always claim to be liberal </Text>

@@ -42,26 +42,24 @@ class CreateUser extends Component {
   renderAvatars() {
     return this.state.avatars.map((avatar, i) => {
       return (
-        <View key={i}>
-          <TouchableHighlight>
-            <Avatar
-              containerStyle={{alignSelf: 'center', marginBottom: 20}}
-              large
-              rounded
-              source={{ uri: avatar.img }}
-              onPress={this.onAvatarPressed.bind(this, avatar)}
-              activeOpacity={0.7}
-            />
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight key={i}>
+          <Avatar
+            containerStyle={{alignItems: 'center', marginBottom: 20}}
+            large
+            rounded
+            source={{ uri: avatar.img }}
+            onPress={this.onAvatarPressed.bind(this, avatar)}
+            activeOpacity={0.7}
+          />
+        </TouchableHighlight>
       );
     });
   }
 
   render () {
     return (
-        <Card>
-          <CardSection>
+        <View>
+          <View>
             <TextInput
               style={styles.textInputStyle}
               placeholder="Enter your Username"
@@ -69,32 +67,38 @@ class CreateUser extends Component {
               onChangeText={this.onUsernameChange.bind(this)}
               value={this.props.name}
             />
-          </CardSection>
+          </View>
 
-          {this.renderAvatars()}
+          <View style={styles.itemStyle}>
+            <ScrollView horizontal >
+              {this.renderAvatars()}
+            </ScrollView>
+          </View>
 
-          <CardSection>
-            <Text style={{ flex: 1, textAlign: 'center' }}>
+          <View>
+            <Text style={{ textAlign: 'center' }}>
               Hello there {this.props.name}!
             </Text>
-          </CardSection>
+          </View>
 
-          <CardSection>
+          <View style={{ flexDirection: 'row' }} >
             <Button
               onPress={this.onCreateClick.bind(this)}
               style={{ marginTop: 25}}
             >
               Let Me In...
             </Button>
-          </CardSection>
-        </Card>
+          </View>
+        </View>
     );
   }
 }
 
 const styles = {
+  itemStyle: {
+    alignItems: 'center'
+  },
   textInputStyle: {
-    flex: 1,
     paddingRight: 5,
     paddingLeft: 5,
     fontSize: 18,
