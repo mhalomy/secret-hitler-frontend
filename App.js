@@ -14,8 +14,8 @@ import MainBoard from './src/Screens/mainBoard';
 import { createBottomTabNavigator } from 'react-navigation';
 import reducers from './redux/reducers';
 import WaitingRoom from './src/Screens/WaitingRoom';
-import JaNeinVote from './src/Components/JaNeinVote';
 import PresidentVeto from './src/Components/PresidentVetoChoice';
+import VoteOnChancellor from './src/Screens/VoteOnChancellor';
 
 
 
