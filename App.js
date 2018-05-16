@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import socket from './redux/middleware'
+import { createStore, applyMiddleware} from 'redux';
+import socket from './redux/middleware';
 import logger from 'redux-logger';
 import CreateRoom from './src/Components/CreateRoom';
 import JoinRoom from './src/Components/JoinRoom';
@@ -53,7 +53,7 @@ export default class App extends React.Component {
 
 
     return (
-      <Provider store={createStore(reducers, applyMiddleware(logger, socket('http://localhost:3000')))}>
+      <Provider store={createStore(reducers, applyMiddleware(socket('http://Lucies-MacBook-Air.local:3000')))}>
         <MainNavigator />
       </Provider>
       );

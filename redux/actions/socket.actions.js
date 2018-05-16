@@ -1,7 +1,4 @@
-export const socketEvent = (message, payload) => ({
+export const socketEvent = (data) => ({
   type: 'socket_event',
-  socket: {
-    message,
-    payload,
-  }
+  socket: data,
 });

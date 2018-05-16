@@ -3,6 +3,7 @@ import { Card, CardSection, Button, HomeImage } from './Common';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { createGame } from '../../redux/actions/gameActions';
+import { socketEvent } from '../../redux/actions/socket.actions';
 
 
 class CreateJoin extends Component {
@@ -12,8 +13,13 @@ class CreateJoin extends Component {
   }
 
   onCreateClick = () => {
-    this.props.createGame()
-    //this.props.navigation.navigate('Create');
+  this.props.socketEvent({
+    type: 'createGame',
+    payload: {
+      user: this.props.user
+    }
+   })
+   this.props.navigation.navigate('Create');
   }
 
   onJoinClick = () => {
@@ -24,7 +30,7 @@ class CreateJoin extends Component {
     return (
       <CardSection>
         <Text style={{ textAlign: 'center', flex: 1 }} >
-          What would you like to do, {this.props.name}?
+          What would you like to do, {this.props.user.name}?
         </Text>
       </CardSection>
     );
@@ -53,19 +59,18 @@ class CreateJoin extends Component {
   }
 }
 
-const mapStateToProps = ({ userReducer }) => {
-  const { avatar, id, name } = userReducer;
-  return {
-    avatar, id, name
-  }
-}
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  game: state.game
+})
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
     createGame: (game) => dispatch(createGame(game))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJoin);
-

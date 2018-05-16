@@ -5,9 +5,47 @@ import { connect } from 'react-redux';
 import { socketEvent } from '../../redux/actions/socket.actions';
 import UserIntro from './UserIntro';
 
-class PatientPlayers extends Component {
+class WaitingRoom extends Component {
   constructor (props) {
     super(props)
+  }
+
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
+  renderText = () => {
+    if (this.props.players.length <= 5) {
+      return 'Waiting for more players'
+    } else {
+      return 'All set, now divide and conquer!'
+    }
+  }
+
+  startGame = () => {
+    this.props.socketEvent({
+      type: 'startGame',
+      payload: {
+        gameId: this.props.game.id
+      }
+    })
+    this.props.navigation.navigate('UserIntro');
+  }
+
+  renderButton = () => {
+    if (this.props.players.length > 6) {
+      return (
+        <TouchableOpacity disabled={true}>
+          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <TouchableOpacity onPress={this.startGame}>
+          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
+        </TouchableOpacity>
+      )
+    }
   }
 
   renderPlayers = () => {
@@ -27,59 +65,15 @@ class PatientPlayers extends Component {
     }
   }
 
-  render() {
-    return (
-      <View style={styles.players}>
-        {this.renderPlayers()}
-      </View>
-    )
-  }
-}
-
-class WaitingRoom extends Component {
-  constructor (props) {
-    super(props)
-  }
-
-  componentWillMount() {
-    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
-  }
-
-  renderText = () => {
-    if (this.props.players.length <= 5) {
-      return 'Waiting for more players'
-    } else {
-      return 'All set, now divide and conquer!'
-    }
-  }
-
-  startGame = () => {
-    this.props.socketEvent('startGame', {gameId: this.props.game.id})
-  }
-
-  renderButton = () => {
-    if (this.props.players.length > 6) {
-      return (
-        <TouchableOpacity disabled={true}>
-          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return (
-        <TouchableOpacity onPress={this.startGame}>
-          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
-        </TouchableOpacity>
-      )
-    }
-  }
-
   render () {
     return (
       <View style={styles.container}>
         <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
 
           <View style={styles.playersContainer}>
-            <PatientPlayers />
+            <View style={styles.players}>
+              {this.renderPlayers()}
+            </View>
           </View>
 
           <View style={styles.waitingMessageContainer}>
@@ -154,8 +148,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  game: state.gameReducer,
-  players: state.gameReducer.playerList
+  game: state.game,
+  players: state.game.playerList
 })
 
 const mapDispatchToProps = (dispatch) => ({

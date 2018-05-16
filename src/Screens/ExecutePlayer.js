@@ -138,8 +138,8 @@ const styles = {
 };
 
 const mapStateToProps = (state) => ({
-  game: state.gameReducer,
-  players: state.gameReducer.playerList
+  game: state.game,
+  players: state.game.playerList
 });
 
 const mapDispatchToProps = (dispatch) => ({

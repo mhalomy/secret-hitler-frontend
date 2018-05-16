@@ -26,12 +26,6 @@ class MainBoard extends Component {
     )
   }
 
-  renderTriangle = () => {
-    return (
-      <View style={styles.triangleLeft}/>
-    )
-  }
-
   renderMainContent = () => {
     if(!this.state.drawerOpen) {
       return (
@@ -166,7 +160,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  game: state.gameReducer
+  game: state.game
 })
 
 const mapDispatchToProps = (dispatch) => ({

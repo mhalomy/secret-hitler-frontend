@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    game: state.gameReducer,
-    players: state.gameReducer.playerList,
-    user: state.userReducer
+    game: state.game,
+    players: state.game.playerList,
+    user: state.user
   };
 };
 
