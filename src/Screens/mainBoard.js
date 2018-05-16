@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  game: state.gameReducer
+  game: state.game
 })
 
 export default connect(mapStateToProps, null)(MainBoard);

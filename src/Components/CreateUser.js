@@ -22,14 +22,11 @@ class CreateUser extends Component {
     let idStored = await readStorage('uuid')
     if (idStored !== null) {
       id = idStored;
-      console.warn('storedId found')
     } else {
       id = uuidv4();
-      console.warn('id created', id)
       writeStorage('uuid', id)
     }
     this.props.createUser({ avatar, id, name });
-    console.warn('id',id);
     this.props.navigation.navigate('CreateJoin');
   }
 
@@ -117,8 +114,8 @@ const styles = {
   }
 }
 
-const mapStateToProps = ({ userReducer }) => {
-  const { avatar, id, name } = userReducer;
+const mapStateToProps = ({ user }) => {
+  const { avatar, id, name } = user;
   return {
     avatar, id, name
   }

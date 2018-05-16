@@ -21,7 +21,10 @@ export default userReducer = (state = user, action) => {
       };
     case 'create_user':
       return {
-        ...state
+        ...state,
+        name: action.payload.name,
+        avatar: action.payload.avatar,
+        id: action.payload.id
       };
     case 'avatar_pressed':
       return {

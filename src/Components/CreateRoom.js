@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage } from './Common';
+import { Card, CardSection, Button, HomeImage, View } from './Common';
 import { Text } from 'react-native';
+import { connect } from 'react-redux';
 
+class CreateRoom extends Component {
 
-export default class CreateJoin extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      gameId: undefined
+    }
+  }
 
   componentDidMount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+    this.setState({
+      gameId: this.props.game.id
+    })
   }
 
   onStartClick() {
     this.props.navigation.navigate('Waiting');
+  }
+
+  revealGameId = () => {
+    if (this.props.game.id) {
+      return this.props.game.id;
+    }
   }
 
   render () {
@@ -20,7 +36,7 @@ export default class CreateJoin extends Component {
 
           <CardSection style={styles.textContainerStyle} >
             <Text style={styles.textStyle} >
-              Your GameID is...
+              Your GameID is {this.props.game.id}
             </Text>
           </CardSection>
 
@@ -53,3 +69,10 @@ const styles = {
     alignItems: 'center'
   }
 }
+
+const mapStateToProps = (state) => ({
+  game: state.game,
+  user: state.user
+})
+
+export default connect(mapStateToProps, null)(CreateRoom);

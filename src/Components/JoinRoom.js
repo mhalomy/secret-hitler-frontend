@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { Card, CardSection, Button, HomeImage } from './Common';
 import { TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { socketEvent } from '../../redux/actions/socket.actions';
 
-export default class JoinRoom extends Component {
+class JoinRoom extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {gameId: ''}
+  }
 
   componentDidMount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   }
 
   onJoinClick() {
+    this.props.socketEvent({
+      type: 'joinGame',
+      payload: {
+        user: this.props.user,
+        gameId: this.state.gameId
+      }
+    })
     this.props.navigation.navigate('Waiting');
   }
 
@@ -16,12 +29,12 @@ export default class JoinRoom extends Component {
     return (
         <Card>
           <HomeImage />
-
           <CardSection style={styles.textInputContainerStyle}>
             <TextInput
               style={styles.textInputStyle}
               placeholder="Enter your GameID"
               autoCorrect={false}
+              onChangeText={(gameId) => this.setState({gameId})}
             />
           </CardSection>
 
@@ -54,3 +67,19 @@ const styles = {
     alignItems: 'center'
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  game: state.game
+})
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+    createGame: (game) => dispatch(createGame(game))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JoinRoom);

@@ -1,29 +1,31 @@
 import io from 'socket.io-client';
 
 const socket = url => store => {
-  let socket = io(url);
+  const socket = io(url);
 
-  socket.on('message', data => {
+
+  socket.on('data', data => {
+    const {type, payload} = data;
+    console.log('PAYLOADDDDDD', payload)
     store.dispatch({
-      type: data.type + '_received',
-      data: data.payload,
-    })
+      type: type + '_received',
+      payload,
+    });
   });
 
-  socket.on('exception', data => {
-    console.error(data.error);
+  socket.on('message', message => {
+    const {type, text} = message;
+    console.log(`server ${type}: ${text}`);
     store.dispatch({
-      type: data.type + '_error',
-      error: data.error,
-    })
+      type: 'server_' + type,
+      text,
+    });
   });
 
   return next => action => {
     if(!action.socket) return next(action);
 
-    const {message, payload} = action.socket;
-
-    socket.emit('message', message, payload);
+    socket.emit('data', action.socket);
 
     next({
       ...action,
@@ -32,5 +34,4 @@ const socket = url => store => {
   }
 }
 
-export default socket; 
-
+export default socket;
