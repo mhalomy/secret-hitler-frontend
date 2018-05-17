@@ -18,11 +18,11 @@ class UserIntro extends Component {
       const player = this.props.players[i];
       if (this.props.user.id === player.user.id) {
         if (player.hitler) {
-          return <Image source={require('../assets/trump.jpg')} style={styles.imageStyle} />
+          return <Image source={require('../assets/HighResHPngs/roleHitler.png')} style={styles.imageStyle} />
         } else if (player.faction === 'liberal') {
-          return <Image source={require('../assets/liberal.jpg')} style={styles.imageStyle} />
+          return <Image source={require('../assets/HighResHPngs/roleLiberal.png')} style={styles.imageStyle} />
         } else {
-          return <Image source={require('../assets/fascist.jpg')} style={styles.imageStyle} />
+          return <Image source={require('../assets/HighResHPngs/roleFascist.png')} style={styles.imageStyle} />
         }
       }
     }
