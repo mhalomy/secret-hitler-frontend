@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage, View } from './Common';
-import { Text } from 'react-native';
+import { Card, CardSection, Button, HomeImage } from './Common';
+import { Text, View, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 
 class CreateRoom extends Component {
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
-      gameId: undefined
-    }
+      gameId: undefined,
+      clipboardContent: "gameidhere123"
+    };
   }
 
   componentDidMount() {
@@ -27,25 +28,37 @@ class CreateRoom extends Component {
     if (this.props.game.id) {
       return this.props.game.id;
     }
-  }
+  };
+
+  writeToClipboard = async () => {
+    const gameId = this.state.gameId;
+    await Clipboard.setString(gameId);
+    alert('Copied to Clipboard!');
+  };
 
   render () {
     return (
-        <Card>
+        <View>
           <HomeImage />
 
-          <CardSection style={styles.textContainerStyle} >
-            <Text style={styles.textStyle} >
+          <View style={styles.textContainerStyle} >
+            <Text selectable={true} style={styles.textStyle} >
               Your GameID is {this.props.game.id}
             </Text>
-          </CardSection>
+          </View>
+
+          <View style={styles.textContainerStyle} >
+            <Button onPress={this.writeToClipboard} >
+              Copy
+            </Button>
+          </View>
 
           <CardSection>
             <Button onPress={this.onStartClick.bind(this)}>
               Start
             </Button>
           </CardSection>
-        </Card>
+        </View>
     );
   }
 }
