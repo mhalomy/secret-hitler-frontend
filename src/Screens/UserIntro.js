@@ -35,7 +35,7 @@ class UserIntro extends Component {
 
 
       <Button
-        title="GOTCHA"
+        title="Ok, Got it!"
         onPress={this.goToBoard}
       />
     </View>
