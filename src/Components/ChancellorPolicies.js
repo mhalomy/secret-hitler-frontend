@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { StyleSheet, Image, View, FlatList, TouchableOpacity, Button, Text } from 'react-native';
 
-const mockList = [ 'liberal', ' fascist', 'liberal'];
+const mockList = [ 'liberal', ' fascist'];
 
 class ChancellorPolicies extends Component {
   constructor (props) {
@@ -110,9 +110,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    game: state.gameReducer,
-    players: state.gameReducer.playerList,
-    user: state.userReducer
+    game: state.game,
+    players: state.game.playerList,
+    user: state.user.id,
   };
 };
 
