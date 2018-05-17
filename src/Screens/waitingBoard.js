@@ -8,16 +8,19 @@ import Notification from '../Components/notification';
 import { DrawerNavigator } from 'react-navigation';
 import { socketEvent } from '../../redux/actions/socket.actions';
 import PlayerList from '../Components/PlayerList';
+import ChancellorPolicies from '../Components/ChancellorPolicies';
+// import PresidentPolicies from '../Components/PresidentPolicies';
 import ShowPresident from './ShowPresident';
 
-class MainBoard extends Component {
+class WaitingBoard extends Component {
   constructor (props) {
     super(props);
-    this.state = {drawerOpen: null, turnCount: 0, userId: this.props.userId, modalVisible: false};
+    this.state = {drawerOpen: null, turnCount: 0, userId: this.props.userId, modalVisible: false, eligiblePoliciesNumber: this.getNumberOfEligiblePolicies()};
   };
 
   componentDidMount () {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+
   }
 
   renderElectionTracker = () => {
@@ -28,9 +31,45 @@ class MainBoard extends Component {
     )
   }
 
- renderPresidentScreen = () => {
-   this.props.navigation.navigate('ShowPresident')
- }
+  getNumberOfEligiblePolicies = () => {
+    return this.props.game.eligiblePolicies.length;
+  }
+
+  goToExecutivePhaseButton = () => {
+    if (this.state.eligiblePolicies === 3) {
+      this.props.players.filter(player => {
+        if ((this.props.user.id === player.id) && player.president) {
+          return <Button
+            title='Click to vote'
+            navigation={this.props.navigation}
+            onPress={this.goToVotingScreen}
+          />
+        }
+      })
+    } else if (this.state.eligiblePolicies === 2) {
+      this.props.players.filter(player => {
+        if ((this.props.user.id === player.id) && player.chancellor) {
+          return <Button
+            title='Click to vote'
+            navigation={this.props.navigation}
+            onPress={this.goToVotingScreen}
+          />
+        }
+      })
+    } else {
+      return <Text> Wait in suspense while the Government selects their Policies </Text>
+    }
+  }
+
+  goToVotingScreen = () => {
+    this.props.players.filter(player => {
+      if ((this.props.user.id === player.id) && player.president) {
+        this.props.navigation.navigate('ChancellorPolicies')
+      } else if ((this.props.user.id === player.id) && player.chancellor) {
+        this.props.navigation.navigate('ChancellorPolicies')
+      }
+    })
+  }
 
   renderMainContent = () => {
     if(!this.state.drawerOpen) {
@@ -172,4 +211,4 @@ const mapDispatchToProps = (dispatch) => ({
   socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingBoard);

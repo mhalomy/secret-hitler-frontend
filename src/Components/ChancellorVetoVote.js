@@ -13,9 +13,14 @@ class ChancellorVeto extends Component {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
-  handleVote = (event) => {
-    const { app, user } = this.props;
-    this.props.socketEvent('vetoPolicy', {user, payload: event.target.className});
+  handleVote = () => {
+    this.props.socketEvent({
+      type: 'chancellorVetoPolicy',
+      payload: {
+        gameId: this.props.game.id,
+        playerId: this.props.user.id,
+      }
+    })
   };
 
   render() {
@@ -67,7 +72,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChancellorVeto);

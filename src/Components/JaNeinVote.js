@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { connect } from 'react-redux';
 import { socketEvent} from '../../redux/actions/socket.actions';
-import MainBoard from '../Screens/mainBoard'
+import MainBoard from '../Screens/mainBoard';
+import WaitingBoard from '../Screens/waitingBoard';
 
 class JaNeinVote extends Component {
   constructor (props) {
@@ -12,23 +13,33 @@ class JaNeinVote extends Component {
   getCurrentPlayerId = () => {
     this.props.players.filter(player => {
       if (player.user.id === this.props.user.id) {
-        return id;
+        return player.id;
       }
     })
   }
 
   handleJaVote = () => {
-    const { app, user } = this.props;
-    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'ja'});
-    this.props.navigation.navigate('MainBoard');
-    // navigate back to board and see others' votes
+    this.props.socketEvent({
+      type: 'voteOnChancellor',
+      payload: {
+        gameId: this.props.game.id,
+        playerId: this.props.user.id,
+        vote: 'ja'
+      }
+    })
+    this.props.navigation.navigate('WaitingBoard');
   };
 
   handleNeinVote = () => {
-    const { app, user } = this.props;
-    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'nein'});
-    this.props.navigation.navigate('MainBoard');
-    // navigate back to board and see others' votes
+    this.props.socketEvent({
+      type: 'voteOnChancellor',
+      payload: {
+        gameId: this.props.game.id,
+        playerId: this.props.user.id,
+        vote: 'nein'
+      }
+    })
+    this.props.navigation.navigate('WaitingBoard');
   };
 
 
@@ -74,7 +85,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(JaNeinVote);

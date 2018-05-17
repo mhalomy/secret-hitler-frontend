@@ -68,7 +68,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+    socketEvent: (data) => dispatch(socketEvent(data)),
     createGame: (game) => dispatch(createGame(game))
   }
 }

@@ -19,7 +19,7 @@ class CreateRoom extends Component {
     })
   }
 
-  onStartClick() {
+  onStartClick = () => {
     this.props.navigation.navigate('Waiting');
   }
 

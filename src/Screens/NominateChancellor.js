@@ -12,7 +12,7 @@ export default class NominateChancellor extends Component {
           </Text>
         </View>
         <View style={styles.playersContainerStyle} >
-          <EligiblePlayers />
+          <EligiblePlayers navigation={this.props.navigation}/>
         </View>
       </View>
     );

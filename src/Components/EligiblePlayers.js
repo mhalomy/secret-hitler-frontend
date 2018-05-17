@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EligiblePlayersItem from './EligiblePlayersItem';
 import { Button } from './Common';
 import { socketEvent } from '../../redux/actions';
+import ShowChancellor from '../Screens/ShowChancellor';
 
 class EligiblePlayers extends Component {
 
@@ -21,7 +22,7 @@ class EligiblePlayers extends Component {
           playerId: playerId
         }
       });
-      // this.props.navigation.navigate('');
+      this.props.navigation.navigate('JaNeinVote');
     }
   };
 
@@ -32,7 +33,7 @@ class EligiblePlayers extends Component {
         gameId: this.props.game.id
       }
     })
-    this.props.navigation.navigate('MainBoard');
+    this.props.navigation.navigate('ShowChancellor');
   }
 
   onPlayerPress = ({chancellor, executed, hitler, id, president, user}) => {
@@ -104,7 +105,7 @@ const styles = {
     paddingBottom: 5
   },
   buttonStyle: {
-    margin: 10,
+    margin: '10%',
     borderRadius: 0
   }
 };
@@ -115,7 +116,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EligiblePlayers);

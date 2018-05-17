@@ -33,18 +33,20 @@ class WaitingRoom extends Component {
   }
 
   renderButton = () => {
-    if (this.props.players.length > 6) {
-      return (
-        <TouchableOpacity disabled={true}>
-          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return (
-        <TouchableOpacity onPress={this.startGame}>
-          <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
-        </TouchableOpacity>
-      )
+    if (this.props.game) {
+      if (this.props.players.length > 6) {
+        return (
+          <TouchableOpacity disabled={true}>
+            <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold', opacity: 0.5}}> START GAME </Text>
+          </TouchableOpacity>
+        )
+      } else {
+        return (
+          <TouchableOpacity onPress={this.startGame}>
+            <Text style={{ fontSize: 30, color: 'black', fontWeight: 'bold'}}> START GAME </Text>
+          </TouchableOpacity>
+        )
+      }
     }
   }
 
@@ -66,30 +68,34 @@ class WaitingRoom extends Component {
   }
 
   render () {
-    return (
-      <View style={styles.container}>
-        <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
+    if (this.props.game && this.props.players && this.props.players.length) {
+      return (
+        <View style={styles.container}>
+          <ImageBackground source={require('../assets/WaitingRoom/HilterLizzard.png')} style={{flex:1, width:'100%', opacity:0.7}}>
 
-          <View style={styles.playersContainer}>
-            <View style={styles.players}>
-              {this.renderPlayers()}
-            </View>
-          </View>
-
-          <View style={styles.waitingMessageContainer}>
-            <Text style={{ fontSize: 42, color: 'red', fontWeight: '900', margin: '5%', width:'100%', height: '100%', textShadowColor: 'black', textShadowOffset: {width: 10, height: 10}, textShadowRadius: 8}}>{this.renderText()}</Text>
-          </View>
-
-            <View style={styles.startButton}>
-              {this.renderButton()}
+            <View style={styles.playersContainer}>
+              <View style={styles.players}>
+                {this.renderPlayers()}
+              </View>
             </View>
 
-          <View style={styles.tipsContainer}>
-            <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}> Tip: Always claim to be liberal </Text>
-          </View>
-        </ImageBackground>
-      </View>
-    )
+            <View style={styles.waitingMessageContainer}>
+              <Text style={{ fontSize: 42, color: 'red', fontWeight: '900', margin: '5%', width:'100%', height: '100%', textShadowColor: 'black', textShadowOffset: {width: 10, height: 10}, textShadowRadius: 8}}>{this.renderText()}</Text>
+            </View>
+
+              <View style={styles.startButton}>
+                {this.renderButton()}
+              </View>
+
+            <View style={styles.tipsContainer}>
+              <Text style={{ fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: '5%', marginTop: '2%'}}> Tip: Always claim to be liberal </Text>
+            </View>
+          </ImageBackground>
+        </View>
+      )
+    } else {
+      return null;
+    }
   }
 }
 
@@ -153,7 +159,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);
