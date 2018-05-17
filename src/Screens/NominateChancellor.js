@@ -5,7 +5,7 @@ import EligiblePlayers from '../Components/EligiblePlayers';
 export default class NominateChancellor extends Component {
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, backgroundColor: '#4c140d' }} >
         <View style={styles.notificationContainerStyle} >
           <Text style={styles.notificationTextStyle} >
             Time to nominate a chancellor!

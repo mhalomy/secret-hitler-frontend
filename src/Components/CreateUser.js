@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { TextInput, View, Text, ScrollView, TouchableHighlight } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import avatars from '../Avatars.json';
-import { Card, CardSection, Button, HomeImage } from './Common';
+import { Button } from './Common';
 import { usernameChanged, createUser, avatarPressed } from '../../redux/actions';
 import { readStorage, writeStorage } from '../../redux/storage';
 import uuidv4 from 'uuid/v4';
@@ -44,7 +44,7 @@ class CreateUser extends Component {
       return (
         <TouchableHighlight key={i}>
           <Avatar
-            containerStyle={{alignItems: 'center', marginBottom: 20}}
+            containerStyle={{ alignItems: 'center', marginBottom: 20, marginRight: 10 }}
             large
             rounded
             source={{ uri: avatar.img }}
@@ -56,9 +56,23 @@ class CreateUser extends Component {
     });
   }
 
+  renderSelectedAvatar() {
+    if (this.props.avatar !== undefined) {
+      return (
+        <Avatar
+          xlarge
+          rounded
+          source={{ uri: this.props.avatar }}
+          containerStyle={{ alignItems: 'center', marginBottom: 10, marginTop: 10 }}
+        />
+      );
+    }
+  }
+
   render () {
+    console.log(this.props)
     return (
-        <View>
+        <View style={{ flex: 1, backgroundColor: '#4c140d' }} >
           <View>
             <TextInput
               style={styles.textInputStyle}
@@ -76,9 +90,13 @@ class CreateUser extends Component {
           </View>
 
           <View>
-            <Text style={{ textAlign: 'center' }}>
+            <Text style={styles.textGreetingStyle}>
               Hello there {this.props.name}!
             </Text>
+          </View>
+
+          <View style={{ alignItems: 'center' }} >
+            {this.renderSelectedAvatar()}
           </View>
 
           <View style={{ flexDirection: 'row' }} >
@@ -108,13 +126,19 @@ const styles = {
     marginTop: 100,
     marginBottom: 50,
     height: 50,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white'
   },
   textInputContainerStyle: {
     padding: 5,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  textGreetingStyle: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: 'white'
   }
 }
 

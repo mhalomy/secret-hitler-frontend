@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage } from './Common';
+import { Button, HomeImage } from './Common';
 import { Text, View, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -8,8 +8,7 @@ class CreateRoom extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      gameId: undefined,
-      clipboardContent: "gameidhere123"
+      gameId: undefined
     };
   }
 
@@ -38,26 +37,26 @@ class CreateRoom extends Component {
 
   render () {
     return (
-        <View>
+        <View style={{ flex: 1, backgroundColor: '#4c140d' }} >
           <HomeImage />
 
-          <View style={styles.textContainerStyle} >
+          <View style={styles.containerStyle} >
             <Text selectable={true} style={styles.textStyle} >
               Your GameID is {this.props.game.id}
             </Text>
           </View>
 
-          <View style={styles.textContainerStyle} >
+          <View style={styles.containerStyle} >
             <Button onPress={this.writeToClipboard} >
               Copy
             </Button>
           </View>
 
-          <CardSection>
+          <View style={styles.containerStyle} >
             <Button onPress={this.onStartClick.bind(this)}>
               Start
             </Button>
-          </CardSection>
+          </View>
         </View>
     );
   }
@@ -66,26 +65,22 @@ class CreateRoom extends Component {
 const styles = {
   textStyle: {
     flex: 1,
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
-    marginLeft: 50,
-    marginRight: 50,
-    height: 50,
-    textAlign: 'center'
+    fontSize: 16,
+    marginLeft: '15%',
+    marginRight: '15%',
+    textAlign: 'center',
+    color: 'white'
   },
-  textContainerStyle: {
+  containerStyle: {
     padding: 5,
-    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center'
   }
-}
+};
 
 const mapStateToProps = (state) => ({
   game: state.game,
   user: state.user
-})
+});
 
 export default connect(mapStateToProps, null)(CreateRoom);

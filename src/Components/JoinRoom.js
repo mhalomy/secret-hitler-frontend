@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage } from './Common';
-import { TextInput } from 'react-native';
+import { Button, HomeImage } from './Common';
+import { TextInput, View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { socketEvent } from '../../redux/actions/socket.actions';
 
@@ -27,23 +27,23 @@ class JoinRoom extends Component {
 
   render () {
     return (
-        <Card>
-          <HomeImage />
-          <CardSection style={styles.textInputContainerStyle}>
-            <TextInput
-              style={styles.textInputStyle}
-              placeholder="Enter your GameID"
-              autoCorrect={false}
-              onChangeText={(gameId) => this.setState({gameId})}
-            />
-          </CardSection>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={-70} contentContainerStyle={{ height: '100%', backgroundColor: '#4c140d' }} >
+        <HomeImage />
+        <View style={styles.containerStyle} >
+          <TextInput
+            style={styles.textInputStyle}
+            placeholder="Enter your GameID"
+            autoCorrect={false}
+            onChangeText={(gameId) => this.setState({gameId})}
+          />
+        </View>
 
-          <CardSection>
-            <Button onPress={this.onJoinClick.bind(this)}>
-              Join
-            </Button>
-          </CardSection>
-        </Card>
+        <View style={styles.containerStyle} >
+          <Button onPress={this.onJoinClick.bind(this)}>
+            Join
+          </Button>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -53,25 +53,24 @@ const styles = {
     flex: 1,
     paddingRight: 5,
     paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
-    marginLeft: 50,
-    marginRight: 50,
+    fontSize: 16,
+    marginLeft: '15%',
+    marginRight: '15%',
     height: 50,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white'
   },
-  textInputContainerStyle: {
+  containerStyle: {
     padding: 5,
-    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center'
   }
-}
+};
 
 const mapStateToProps = (state) => ({
   user: state.user,
   game: state.game
-})
+});
 
 
 
@@ -80,6 +79,6 @@ const mapDispatchToProps = (dispatch) => {
     socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
     createGame: (game) => dispatch(createGame(game))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(JoinRoom);
