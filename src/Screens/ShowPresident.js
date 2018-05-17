@@ -16,7 +16,6 @@ class ShowPresident extends Component {
     this.state = {
       id: undefined,
       presId: undefined,
-      presName: undefined,
     }
   }
 
@@ -58,7 +57,7 @@ class ShowPresident extends Component {
     if (this.props.user === this.state.presId) {
       this.props.navigation.navigate('NominateChancellor')
     } else {
-      this.props.navigation.navigate('NominateChancellor')
+      this.props.navigation.navigate('MainBoard')
     }
   }
 

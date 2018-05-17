@@ -21,6 +21,8 @@ import ExecutePlayer from './src/Screens/ExecutePlayer';
 import Notification from './src/Components/notification';
 
 import ShowPresident from './src/Screens/ShowPresident';
+import ShowChancellor from './src/Screens/ShowChancellor';
+
 
 
 export default class App extends React.Component {

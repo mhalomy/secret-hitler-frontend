@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EligiblePlayersItem from './EligiblePlayersItem';
 import { Button } from './Common';
 import { socketEvent } from '../../redux/actions';
+import ShowChancellor from '../Screens/ShowChancellor';
 
 class EligiblePlayers extends Component {
 
@@ -32,7 +33,7 @@ class EligiblePlayers extends Component {
         gameId: this.props.game.id
       }
     })
-    this.props.navigation.navigate('MainBoard');
+    this.props.navigation.navigate('ShowChancellor');
   }
 
   onPlayerPress = ({chancellor, executed, hitler, id, president, user}) => {
