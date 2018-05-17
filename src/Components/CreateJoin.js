@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Button, HomeImage } from './Common';
-import { Text } from 'react-native';
+import { CardSection, Button, HomeImage } from './Common';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { createGame } from '../../redux/actions/gameActions';
 import { socketEvent } from '../../redux/actions/socket.actions';
@@ -29,7 +29,7 @@ class CreateJoin extends Component {
   renderUserName = () => {
     return (
       <CardSection>
-        <Text style={{ textAlign: 'center', flex: 1 }} >
+        <Text style={{ textAlign: 'center', flex: 1, fontSize: 16, color: 'white' }} >
           What would you like to do, {this.props.user.name}?
         </Text>
       </CardSection>
@@ -38,7 +38,7 @@ class CreateJoin extends Component {
 
   render () {
     return (
-        <Card>
+        <View style={{ flex: 1, backgroundColor: '#4c140d' }} >
           <HomeImage />
 
           {this.renderUserName()}
@@ -54,7 +54,7 @@ class CreateJoin extends Component {
               Join
             </Button>
           </CardSection>
-        </Card>
+        </View>
     );
   }
 }
