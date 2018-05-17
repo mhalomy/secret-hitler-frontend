@@ -19,30 +19,33 @@ class ShowPresident extends Component {
     }
   }
 
+  componentWillMount () {
+    this.setState({
+      presId: this.getPresidentId()
+    })
+  }
+
+
   getPresidentId = () => {
     const presidentId = this.props.players.filter(player => {
       if (player.president) {
         return player.id;
       }
     })
-    this.setState({
-      presId: presidentId
-    })
   }
 
   revealPresident = () => {
-    const president = this.props.players.filter(player => {
+    const president= this.props.players.filter(player => {
       if (player.president) {
         return player;
       }
     })
-    const presidentId = president[0].id;
+    const presidentId = president[0].user.id
     const presidentName = president[0].user.name;
-
     if (this.props.user.id === presidentId) {
-      return <Text> Welcome to the Presidency! </Text>
+      return <Text style={styles.text}> Welcome to the Presidency! </Text>
     } else {
-      return <Text> {presidentName} is your President this turn. </Text>
+      return <Text style={styles.text}> {presidentName} is your President this turn. </Text>
     }
   }
 
@@ -63,17 +66,46 @@ class ShowPresident extends Component {
 
   render () {
     return (
-      <View>
-        {this.revealPresident()}
-      <Button
-        navigation={this.props.navigation}
-        title="Ready to vote!"
-        onPress={this.handleClick}
-      />
-      </View>
+    <View style={styles.mainBoardContainer}>
+      <ImageBackground source={require('../assets/WaitingRoom/waitingRoomBackground.png')} style={{flex:1, width:'100%', opacity: 0.6}}>
+          <View style={styles.presidentCard}>
+            {this.revealPresident()}
+              <Button
+                navigation={this.props.navigation}
+                title="Got it"
+                onPress={this.handleClick}
+                style={styles.button}
+              />
+          </View>
+        </ImageBackground>
+    </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  mainBoardContainer : {
+    display: 'flex',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+
+  presidentCard: {
+    alignSelf: 'center',
+    margin: '10%',
+  },
+
+  button: {
+    color: 'white',
+  },
+
+  text: {
+    fontSize: 42,
+    fontWeight: 'bold',
+  }
+})
 
 const mapStateToProps = (state) => ({
   game: state.game,

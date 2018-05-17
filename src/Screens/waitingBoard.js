@@ -64,7 +64,7 @@ class WaitingBoard extends Component {
   goToVotingScreen = () => {
     this.props.players.filter(player => {
       if ((this.props.user.id === player.id) && player.president) {
-        this.props.navigation.navigate('ChancellorPolicies')
+        this.props.navigation.navigate('PresidentPolicies')
       } else if ((this.props.user.id === player.id) && player.chancellor) {
         this.props.navigation.navigate('ChancellorPolicies')
       }
@@ -108,7 +108,7 @@ class WaitingBoard extends Component {
               </View>
             </View>
             <TouchableOpacity onTrackerPress={this.toggleTracker} style={styles.electionTracker}>
-              <ElectionTracker/>
+              {this.goToExecutivePhaseButton()}
             </TouchableOpacity>
           </View>
         )
@@ -145,8 +145,8 @@ class WaitingBoard extends Component {
             this.setState({drawerOpen: true});
           }}>
           <Button
-            title='NOTIFICATIONS'
-            onPress={this.renderPresidentScreen}
+            title='Time for the Executive Phase'
+            onPress={this.goToExecutivePhaseButton}
           />
           <View>
           {this.renderMainContent()}

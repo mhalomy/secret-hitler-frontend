@@ -44,16 +44,29 @@ class JaNeinVote extends Component {
 
 
   render() {
-    return (
-      <View style={styles.voteContainer}>
-        <TouchableOpacity className='JA' style={styles.vote} onPress={this.handleJaVote}>
-          <ImageBackground source={require('../assets/JA.png')} style={{flex: 1, width:'100%'}} />
-        </TouchableOpacity>
-        <TouchableOpacity className='NEIN' onPress={this.handleNeinVote} style={styles.vote}>
-          <ImageBackground source={require('../assets/NEIN.png')} style={{flex: 1, width:'100%'}} />
-        </TouchableOpacity>
-      </View>
-    )
+    if (this.props.game.currentChancellor) {
+      return (
+        <View style={styles.voteContainer}>
+          <TouchableOpacity className='JA' style={styles.vote} onPress={this.handleJaVote}>
+            <ImageBackground source={require('../assets/JA.png')} style={{flex: 1, width:'100%'}} />
+          </TouchableOpacity>
+          <TouchableOpacity className='NEIN' onPress={this.handleNeinVote} style={styles.vote}>
+            <ImageBackground source={require('../assets/NEIN.png')} style={{flex: 1, width:'100%'}} />
+          </TouchableOpacity>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.voteContainer}>
+          <TouchableOpacity disabled={true} className='JA' style={styles.vote} onPress={this.handleJaVote}>
+            <ImageBackground source={require('../assets/JA.png')} style={{flex: 1, width:'100%', opacity:'0.8'}} />
+          </TouchableOpacity>
+          <TouchableOpacity disabled={true}  className='NEIN' onPress={this.handleNeinVote} style={styles.vote}>
+            <ImageBackground source={require('../assets/NEIN.png')} style={{flex: 1, width:'100%', opacity:'0.8'}} />
+          </TouchableOpacity>
+        </View>
+      )
+    }
   }
 }
 

@@ -30,15 +30,21 @@ class JoinRoom extends Component {
   render () {
     return (
         <Card>
+        <CardSection style={styles.textInputContainerStyle}>
+          <TextInput
+            style={styles.textInputStyle}
+            placeholder="Enter your GameID"
+            autoCorrect={false}
+            onChangeText={(gameId) => this.setState({gameId})}
+          />
+        </CardSection>
+        <CardSection>
+          <Button onPress={this.joinGameRoom}>
+            Join
+          </Button>
+        </CardSection>
           <HomeImage />
-          <CardSection style={styles.textInputContainerStyle}>
-            <TextInput
-              style={styles.textInputStyle}
-              placeholder="Enter your GameID"
-              autoCorrect={false}
-              onChangeText={(gameId) => this.setState({gameId})}
-            />
-          </CardSection>
+
 
           <CardSection>
             <Button onPress={this.joinGameRoom}>
@@ -49,6 +55,26 @@ class JoinRoom extends Component {
     );
   }
 }
+
+// return (
+//     <Card>
+//       <HomeImage />
+//       <CardSection style={styles.textInputContainerStyle}>
+//         <TextInput
+//           style={styles.textInputStyle}
+//           placeholder="Enter your GameID"
+//           autoCorrect={false}
+//           onChangeText={(gameId) => this.setState({gameId})}
+//         />
+//       </CardSection>
+//
+//       <CardSection>
+//         <Button onPress={this.joinGameRoom}>
+//           Join
+//         </Button>
+//       </CardSection>
+//     </Card>
+// );
 
 const styles = {
   textInputStyle: {

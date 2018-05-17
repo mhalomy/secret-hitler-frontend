@@ -19,20 +19,21 @@ class EligiblePlayers extends Component {
         type: 'suggestChancellor',
         payload: {
           gameId: this.props.game.id,
-          playerId: playerId
+          playerId: this.user.id
         }
       });
       this.props.navigation.navigate('JaNeinVote');
     }
   };
 
-  startGame = () => {
+  goToChancellor = () => {
     this.props.socketEvent({
-      type: 'startGame',
+      type: 'suggestChancellor',
       payload: {
-        gameId: this.props.game.id
+        gameId: this.props.game.id,
+        playerId: this.user.id
       }
-    })
+    });
     this.props.navigation.navigate('ShowChancellor');
   }
 

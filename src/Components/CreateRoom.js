@@ -37,6 +37,7 @@ class CreateRoom extends Component {
   };
 
   render () {
+    console.log('GAME IDDDDDD ===================D', this.props.game.id)
     return (
         <View>
           <HomeImage />
