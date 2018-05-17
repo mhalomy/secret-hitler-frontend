@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Modal, Alert, Button} from 'react-native';
 import ElectionTracker from '../Components/electionTracker';
 import Board from '../Components/board';
 import Drawer from 'react-native-drawer';
-import Notification from '../Components/notification'
-import { socketEvent } from '../../redux/actions/socket.actions'
+import Notification from '../Components/notification';
+import { DrawerNavigator } from 'react-navigation';
+import { socketEvent } from '../../redux/actions/socket.actions';
+import PlayerList from '../Components/PlayerList';
+import ShowPresident from './ShowPresident';
 
 class MainBoard extends Component {
   constructor (props) {
     super(props);
-    this.state = {drawerOpen: null, turnCount: 0};
+    this.state = {drawerOpen: null, turnCount: 0, userId: this.props.userId, modalVisible: false};
   };
 
   componentDidMount () {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
 
-  // Presentational
   renderElectionTracker = () => {
     return (
       <TouchableOpacity onTrackerPress={this.toggleTracker} style={styles.electionTracker}>
@@ -26,15 +28,15 @@ class MainBoard extends Component {
     )
   }
 
+ renderPresidentScreen = () => {
+   this.props.navigation.navigate('ShowPresident')
+ }
+
   renderMainContent = () => {
     if(!this.state.drawerOpen) {
       return (
         <View style={styles.mainBoardContainer}>
           <View style={styles.allianceBoards}>
-            <View>
-              <Notification style={styles.notification}/>
-            </View>
-
             <View style={styles.liberalBoard}>
               <ImageBackground source={require('../assets/board/liberalBoard.png')} style={{flex:1}} >
                 <Board className='liberal'/>
@@ -51,6 +53,9 @@ class MainBoard extends Component {
     } else {
         return (
           <View style={styles.mainBoardContainer}>
+            <View>
+              <PlayerList style={styles.electionTracker}/>
+            </View>
             <View style={styles.allianceBoards}>
               <View style={styles.liberalBoard}>
                 <ImageBackground source={require('../assets/board/liberalBoard.png')} style={{flex:1}} >
@@ -72,24 +77,15 @@ class MainBoard extends Component {
     }
 
   // Socket actions occuring on the main Board
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.turnCount > prevState.turnCount) {
-      handlePresidentChange();
-    } else {
-      return prevState;
-    }
-  }
-
-  handlePresidentChange = () => {
-    this.setState({
-      turnCount: turnCount++
-    })
-    this.props.socketEvent('acknowledgePresident', {gameId: this.props.game.id})
-  }
-
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.turnCount > prevState.turnCount) {
+  //     handlePresidentChange();
+  //   } else {
+  //     return prevState;
+  //   }
+  // }
 
   render() {
-    console.log('PROOOOOOOOOOPS', this.props)
     return (
       <Drawer
         open={this.state.drawerOpen}
@@ -109,7 +105,13 @@ class MainBoard extends Component {
           onPress={() => {
             this.setState({drawerOpen: true});
           }}>
+          <Button
+            title='NOTIFICATIONS'
+            onPress={this.renderPresidentScreen}
+          />
+          <View>
           {this.renderMainContent()}
+          </View>
           </TouchableOpacity>
         </View>
       </Drawer>
@@ -156,15 +158,18 @@ const styles = StyleSheet.create({
 
   notification: {
     height: '20%',
+    backgroundColor: 'purple',
   }
 })
 
 const mapStateToProps = (state) => ({
-  game: state.game
+  game: state.game,
+  players: state.game.playerList,
+  userId: state.user.id
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainBoard);

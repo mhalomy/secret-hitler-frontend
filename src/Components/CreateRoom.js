@@ -40,7 +40,6 @@ class CreateRoom extends Component {
     return (
         <View>
           <HomeImage />
-
           <View style={styles.textContainerStyle} >
             <Text selectable={true} style={styles.textStyle} >
               Your GameID is {this.props.game.id}

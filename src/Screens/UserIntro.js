@@ -9,6 +9,10 @@ class UserIntro extends Component {
     this.props.navigation.navigate('MainBoard');
   }
 
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   componentWillUnmount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }
@@ -35,6 +39,7 @@ class UserIntro extends Component {
 
 
       <Button
+        navigation={this.props.navigation}
         title="Ok, Got it!"
         onPress={this.goToBoard}
       />

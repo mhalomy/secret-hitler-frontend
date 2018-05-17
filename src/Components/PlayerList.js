@@ -6,8 +6,8 @@ import PlayerListItem from './PlayerListItem';
 class PlayerList extends Component {
 
   renderPlayerList() {
-    return this.props.playerList.map((player) =>
-      <PlayerListItem key={player.id} player={player} />
+    return this.props.players.map((player) =>
+      <PlayerListItem key={player.user.id} player={player} />
     );
   }
 
@@ -20,8 +20,8 @@ class PlayerList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  playerList: state.game.playerList
-}
+const mapStateToProps = (state) => ({
+  players: state.game.playerList
+})
 
-export default connect(mapStateToProps, {})(PlayerList);
+export default connect(mapStateToProps)(PlayerList);
