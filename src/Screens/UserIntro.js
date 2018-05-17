@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MainBoard from './mainBoard';
+import Button2 from '../Common/Button';
 
 class UserIntro extends Component {
   goToBoard = () => {
@@ -37,12 +38,16 @@ class UserIntro extends Component {
     <View style={styles.parent}>
       {this.renderRoleCard()}
 
+      <Button2
+        onPress={this.goToBoard}>
+        Ok, Got it!
+      </Button2>
 
-      <Button
+      {/* <Button
         navigation={this.props.navigation}
         title="Ok, Got it!"
         onPress={this.goToBoard}
-      />
+      /> */}
     </View>
     )
   }
