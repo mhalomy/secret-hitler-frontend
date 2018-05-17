@@ -21,7 +21,7 @@ class EligiblePlayers extends Component {
           playerId: playerId
         }
       });
-      // this.props.navigation.navigate('');
+      this.props.navigation.navigate('JaNeinVote');
     }
   };
 
@@ -104,7 +104,7 @@ const styles = {
     paddingBottom: 5
   },
   buttonStyle: {
-    margin: 10,
+    margin: '10%',
     borderRadius: 0
   }
 };
@@ -115,7 +115,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EligiblePlayers);

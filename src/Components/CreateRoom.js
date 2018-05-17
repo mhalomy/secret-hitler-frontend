@@ -35,7 +35,7 @@ class CreateRoom extends Component {
           <HomeImage />
 
           <CardSection style={styles.textContainerStyle} >
-            <Text style={styles.textStyle} >
+            <Text selectable={true} style={styles.textStyle} >
               Your GameID is {this.props.game.id}
             </Text>
           </CardSection>

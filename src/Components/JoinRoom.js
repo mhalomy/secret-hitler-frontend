@@ -14,15 +14,17 @@ class JoinRoom extends Component {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   }
 
-  onJoinClick = () => {
-    this.props.socketEvent({
-      type: 'joinGame',
-      payload: {
-        user: this.props.user,
-        gameId: this.state.gameId
-      }
-    })
-    this.props.navigation.navigate('Waiting');
+  joinGameRoom = () => {
+    if (this.state.gameId) {
+      this.props.socketEvent({
+        type: 'joinGame',
+        payload: {
+          user: this.props.user,
+          gameId: this.state.gameId
+        }
+      })
+      this.props.navigation.navigate('Waiting');
+    }
   }
 
   render () {
@@ -39,7 +41,7 @@ class JoinRoom extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onJoinClick}>
+            <Button onPress={this.joinGameRoom}>
               Join
             </Button>
           </CardSection>

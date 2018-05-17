@@ -12,23 +12,33 @@ class JaNeinVote extends Component {
   getCurrentPlayerId = () => {
     this.props.players.filter(player => {
       if (player.user.id === this.props.user.id) {
-        return id;
+        return player.id;
       }
     })
   }
 
   handleJaVote = () => {
-    const { app, user } = this.props;
-    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'ja'});
+    this.props.socketEvent({
+      type: 'voteOnChancellor',
+      payload: {
+        gameId: this.props.game.id,
+        playerId: this.props.user.id,
+        vote: 'ja'
+      }
+    })
     this.props.navigation.navigate('MainBoard');
-    // navigate back to board and see others' votes
   };
 
   handleNeinVote = () => {
-    const { app, user } = this.props;
-    this.props.socketEvent('voteOnChancellor', {gameId: this.props.game.id, playerId: this.getCurrentPlayerId(), vote:'nein'});
+    this.props.socketEvent({
+      type: 'voteOnChancellor',
+      payload: {
+        gameId: this.props.game.id,
+        playerId: this.props.user.id,
+        vote: 'nein'
+      }
+    })
     this.props.navigation.navigate('MainBoard');
-    // navigate back to board and see others' votes
   };
 
 
@@ -74,7 +84,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(JaNeinVote);

@@ -10,6 +10,10 @@ class UserIntro extends Component {
     this.props.navigation.navigate('MainBoard');
   }
 
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   componentWillUnmount() {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
   }

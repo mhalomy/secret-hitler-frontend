@@ -6,8 +6,8 @@ import Board from '../Components/board';
 import Drawer from 'react-native-drawer';
 import Notification from '../Components/notification';
 import { socketEvent } from '../../redux/actions/socket.actions';
-import JaNeinVote from '../Screens/JaNeinVote';
-import JaNeinVote from '../Screens/NominateChancellor';
+import JaNeinVote from '../Components/JaNeinVote';
+import NominateChancellor from './NominateChancellor';
 
 
 class ShowPresident extends Component {
@@ -16,12 +16,18 @@ class ShowPresident extends Component {
     this.state = {
       id: undefined,
       presId: undefined,
+      presName: undefined,
     }
   }
 
-  componentWillMount () {
+  getPresidentId = () => {
+    const presidentId = this.props.players.filter(player => {
+      if (player.president) {
+        return player.id;
+      }
+    })
     this.setState({
-      id: this.props.user.id
+      presId: presidentId
     })
   }
 
@@ -32,17 +38,15 @@ class ShowPresident extends Component {
       }
     })
     const presidentId = president[0].id;
-    this.setState({
-      presId: presidentId
-    })
     const presidentName = president[0].user.name;
 
-    if (this.state.id === presidentId) {
+    if (this.props.user.id === presidentId) {
       return <Text> Welcome to the Presidency! </Text>
     } else {
       return <Text> {presidentName} is your President this turn. </Text>
     }
   }
+
 
   handleClick = () => {
     this.props.socketEvent({
@@ -51,14 +55,10 @@ class ShowPresident extends Component {
         gameId: this.props.game.id
       }
     })
-  }
-
-
-    if (this.props.user.id === this.state.presId) {
+    if (this.props.user === this.state.presId) {
       this.props.navigation.navigate('NominateChancellor')
-      // ^^^ replace name of screen
     } else {
-      this.props.navigation.navigate('MainBoard')
+      this.props.navigation.navigate('NominateChancellor')
     }
   }
 

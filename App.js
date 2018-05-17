@@ -20,6 +20,8 @@ import NominateChancellor from './src/Screens/NominateChancellor';
 import ExecutePlayer from './src/Screens/ExecutePlayer';
 import Notification from './src/Components/notification';
 
+import ShowPresident from './src/Screens/ShowPresident';
+
 
 export default class App extends React.Component {
 
@@ -36,6 +38,7 @@ export default class App extends React.Component {
       MainBoard : { screen: MainBoard },
       NominateChancellor: { screen: NominateChancellor },
       ExecutePlayer: { screen: ExecutePlayer },
+      ShowPresident: { screen: ShowPresident }
     }, {
       navigationOptions: {
         tabBarVisible: false
