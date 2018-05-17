@@ -20,7 +20,7 @@ class CreateRoom extends Component {
     })
   }
 
-  onStartClick() {
+  onStartClick = () => {
     this.props.navigation.navigate('Waiting');
   }
 
@@ -53,7 +53,7 @@ class CreateRoom extends Component {
           </View>
 
           <CardSection>
-            <Button onPress={this.onStartClick.bind(this)}>
+            <Button onPress={this.onStartClick}>
               Start
             </Button>
           </CardSection>

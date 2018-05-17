@@ -9,7 +9,7 @@ import { DrawerNavigator } from 'react-navigation';
 import { socketEvent } from '../../redux/actions/socket.actions';
 import PlayerList from '../Components/PlayerList';
 import ChancellorPolicies from '../Components/ChancellorPolicies';
-import PresidentPolicies from '../Components/PresidentPolicies';
+// import PresidentPolicies from '../Components/PresidentPolicies';
 import ShowPresident from './ShowPresident';
 
 class WaitingBoard extends Component {
@@ -211,4 +211,4 @@ const mapDispatchToProps = (dispatch) => ({
   socketEvent: (data) => dispatch(socketEvent(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Waitingboard);
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingBoard);

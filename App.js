@@ -12,15 +12,14 @@ import CreateJoin from './src/Components/CreateJoin';
 import CreateUser from './src/Components/CreateUser';
 import JaNeinVote from './src/Components/JaNeinVote';
 import PresidentVeto from './src/Components/PresidentVetoChoice';
-import VoteOnChancellor from './src/Screens/VoteOnChancellor';
-import NominateChancellor from './src/Screens/NominateChancellor';
-import ExecutePlayer from './src/Screens/ExecutePlayer';
 import Notification from './src/Components/notification';
-import ChancellorPolicies from '../Components/ChancellorPolicies';
-import PresidentPolicies from '../Components/PresidentPolicies';
-
+import ChancellorPolicies from './src/Components/ChancellorPolicies';
+// import PresidentPolicies from './src/Components/PresidentPolicies';
+import WaitingBoard from './src/Screens/waitingBoard';
 import ShowPresident from './src/Screens/ShowPresident';
 import ShowChancellor from './src/Screens/ShowChancellor';
+
+
 import {
   UserIntro,
   MainBoard,
@@ -28,7 +27,6 @@ import {
   VoteOnChancellor,
   NominateChancellor,
   ExecutePlayer,
-  waitingBoard,
 } from './src/Screens';
 
 export default class App extends React.Component {
@@ -39,7 +37,7 @@ export default class App extends React.Component {
       CreateJoin: { screen: CreateJoin },
       Create: { screen: CreateRoom },
       Join: { screen: JoinRoom },
-      WaitingRoom: { screen: WaitingRoom },
+      Waiting: { screen: WaitingRoom },
       WaitingBoard: { screen: WaitingBoard },
       UserIntro: { screen: UserIntro },
       VoteOnChancellor : { screen: VoteOnChancellor },
