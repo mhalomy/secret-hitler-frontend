@@ -6,6 +6,7 @@ import MainBoard from './mainBoard';
 
 class UserIntro extends Component {
   goToBoard = () => {
+    console.log('WAZZZZZAAAAAAAA')
     this.props.navigation.navigate('MainBoard');
   }
 
@@ -36,6 +37,7 @@ class UserIntro extends Component {
 
       <Button
         title="GOTCHA"
+        navigation={this.props.navigation}
         onPress={this.goToBoard}
       />
     </View>

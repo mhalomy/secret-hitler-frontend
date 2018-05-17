@@ -1,6 +1,6 @@
 import initialAppState from './initialAppState';
 
-const game = {};
+const game = {}
 
 export default gameReducer = (state = game, action) => {
   switch (action.type) {

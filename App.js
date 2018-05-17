@@ -16,6 +16,10 @@ import reducers from './redux/reducers';
 import WaitingRoom from './src/Screens/WaitingRoom';
 import PresidentVeto from './src/Components/PresidentVetoChoice';
 import VoteOnChancellor from './src/Screens/VoteOnChancellor';
+import NominateChancellor from './src/Screens/NominateChancellor';
+import ExecutePlayer from './src/Screens/ExecutePlayer';
+import Notification from './src/Components/notification';
+
 
 export default class App extends React.Component {
 
@@ -23,24 +27,15 @@ export default class App extends React.Component {
     const MainNavigator = createBottomTabNavigator({
       Login: { screen: CreateUser },
       CreateJoin: { screen: CreateJoin },
-      CreateOrJoin: {
-        screen: createBottomTabNavigator({
-          Create: { screen: CreateRoom },
-          Join: { screen: JoinRoom },
-          Waiting: { screen: WaitingRoom },
-          UserIntro: { screen: UserIntro },
-          MainBoard : { screen: MainBoard },
-          VoteOnChancellor : { screen: VoteOnChancellor },
-        },
+      Create: { screen: CreateRoom },
+      Join: { screen: JoinRoom },
+      Waiting: { screen: WaitingRoom },
+      UserIntro: { screen: UserIntro },
+      VoteOnChancellor : { screen: VoteOnChancellor },
       JaNeinVote: {screen: JaNeinVote},
       MainBoard : { screen: MainBoard },
-        {
-          navigationOptions: {
-            tabBarVisible: false
-          },
-          lazy: true
-        })
-      }
+      NominateChancellor: { screen: NominateChancellor },
+      ExecutePlayer: { screen: ExecutePlayer },
     }, {
       navigationOptions: {
         tabBarVisible: false
@@ -48,9 +43,14 @@ export default class App extends React.Component {
       lazy: true
     });
 
+    // const DrawerNavigation = createDrawerNavigator({
+    //   MainBoard: { screen: MainBoard },
+    //   Notification: {screen: Notification}
+    // })
+
 
     return (
-      <Provider store={createStore(reducers, applyMiddleware(socket('http://192.168.1.165:3000')))}>
+      <Provider store={createStore(reducers, applyMiddleware(logger, socket('http://192.168.1.165:3000')))}>
         <MainNavigator />
       </Provider>
       );

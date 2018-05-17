@@ -14,7 +14,7 @@ class JoinRoom extends Component {
     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   }
 
-  onJoinClick() {
+  onJoinClick = () => {
     this.props.socketEvent({
       type: 'joinGame',
       payload: {
@@ -39,7 +39,7 @@ class JoinRoom extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onJoinClick.bind(this)}>
+            <Button onPress={this.onJoinClick}>
               Join
             </Button>
           </CardSection>
@@ -75,11 +75,9 @@ const mapStateToProps = (state) => ({
 
 
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
-    createGame: (game) => dispatch(createGame(game))
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  socketEvent: (data) => dispatch(socketEvent(data)),
+  createGame: (game) => dispatch(createGame(game))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(JoinRoom);

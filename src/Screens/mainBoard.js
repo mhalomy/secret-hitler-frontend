@@ -72,13 +72,13 @@ class MainBoard extends Component {
     }
 
   // Socket actions occuring on the main Board
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.turnCount > prevState.turnCount) {
-      handlePresidentChange();
-    } else {
-      return prevState;
-    }
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.turnCount > prevState.turnCount) {
+  //     handlePresidentChange();
+  //   } else {
+  //     return prevState;
+  //   }
+  // }
 
   handlePresidentChange = () => {
     this.setState({

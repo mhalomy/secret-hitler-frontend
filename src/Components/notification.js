@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
+import ShowPresident from './notification';
 
 class Notification extends Component {
   constructor (props) {
     super(props)
   }
 
+  static navigationOptions = {
+    drawerLabel: 'Notification',
+  }
+
   render() {
     return (
-      <View style={styles.notification}>
-        <Text> HELLO </Text>
-      </View>
+      <TouchableOpacity onPress={() => this.props.navigation.goBack()} title='Back to the game!' style={styles.notification}>
+
+      </TouchableOpacity>
     )
   }
 }
