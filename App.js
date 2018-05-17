@@ -16,6 +16,8 @@ import VoteOnChancellor from './src/Screens/VoteOnChancellor';
 import NominateChancellor from './src/Screens/NominateChancellor';
 import ExecutePlayer from './src/Screens/ExecutePlayer';
 import Notification from './src/Components/notification';
+import ChancellorPolicies from '../Components/ChancellorPolicies';
+import PresidentPolicies from '../Components/PresidentPolicies';
 
 import ShowPresident from './src/Screens/ShowPresident';
 import ShowChancellor from './src/Screens/ShowChancellor';
@@ -25,7 +27,8 @@ import {
   WaitingRoom,
   VoteOnChancellor,
   NominateChancellor,
-  ExecutePlayer
+  ExecutePlayer,
+  waitingBoard,
 } from './src/Screens';
 
 export default class App extends React.Component {
@@ -36,14 +39,16 @@ export default class App extends React.Component {
       CreateJoin: { screen: CreateJoin },
       Create: { screen: CreateRoom },
       Join: { screen: JoinRoom },
-      Waiting: { screen: WaitingRoom },
+      WaitingRoom: { screen: WaitingRoom },
+      WaitingBoard: { screen: WaitingBoard },
       UserIntro: { screen: UserIntro },
       VoteOnChancellor : { screen: VoteOnChancellor },
       JaNeinVote: {screen: JaNeinVote},
       MainBoard : { screen: MainBoard },
       NominateChancellor: { screen: NominateChancellor },
       ExecutePlayer: { screen: ExecutePlayer },
-      ShowPresident: { screen: ShowPresident }
+      ShowPresident: { screen: ShowPresident },
+      ChancellorPolicies: { screen: ChancellorPolicies },
     }, {
       navigationOptions: {
         tabBarVisible: false

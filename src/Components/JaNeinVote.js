@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, Button} from 'react-native';
 import { connect } from 'react-redux';
 import { socketEvent} from '../../redux/actions/socket.actions';
-import MainBoard from '../Screens/mainBoard'
+import MainBoard from '../Screens/mainBoard';
+import WaitingBoard from '../Screens/waitingBoard';
 
 class JaNeinVote extends Component {
   constructor (props) {
@@ -26,7 +27,7 @@ class JaNeinVote extends Component {
         vote: 'ja'
       }
     })
-    this.props.navigation.navigate('MainBoard');
+    this.props.navigation.navigate('WaitingBoard');
   };
 
   handleNeinVote = () => {
@@ -38,7 +39,7 @@ class JaNeinVote extends Component {
         vote: 'nein'
       }
     })
-    this.props.navigation.navigate('MainBoard');
+    this.props.navigation.navigate('WaitingBoard');
   };
 
 
