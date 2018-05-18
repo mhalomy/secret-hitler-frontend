@@ -13,7 +13,7 @@ import ShowPresident from './ShowPresident';
 class MainBoard extends Component {
   constructor (props) {
     super(props);
-    this.state = {drawerOpen: null, turnCount: 0, userId: this.props.userId, modalVisible: false};
+    this.state = {drawerOpen: null, turnCount: 0, userId: this.props.userId, modalVisible: false, presidentShown: false, chancellorShown: false};
   };
 
   componentDidMount () {
@@ -28,11 +28,22 @@ class MainBoard extends Component {
     )
   }
 
- renderPresidentScreen = () => {
-   this.props.navigation.navigate('ShowPresident')
+ renderGovernmentScreen = () => {
+   if (!this.state.presidentShown) {
+      this.props.navigation.navigate('ShowPresident')
+      this.setState({
+        presidentShown: true,
+      })
+    } else if (this.state.presidentShown && !this.state.chancellorShown) {
+      this.props.navigation.navigate('ShowChancellor')
+      this.setState({
+        presidentShown: true,
+      })
+    }
  }
 
   renderMainContent = () => {
+    console.log('IS MY STATE CHANING IN WEIRD UNPREDICTABLE WAYS????', this.state)
     if(!this.state.drawerOpen) {
       return (
         <View style={styles.mainBoardContainer}>
@@ -106,8 +117,9 @@ class MainBoard extends Component {
             this.setState({drawerOpen: true});
           }}>
           <Button
-            title='NOTIFICATIONS'
-            onPress={this.renderPresidentScreen}
+            style={styles.button}
+            title='Newsflash! Read all about it'
+            onPress={this.renderGovernmentScreen}
           />
           <View>
           {this.renderMainContent()}
@@ -130,6 +142,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  container: {
+    display: 'flex',
+    height: '100%',
+    flex: 0.88
+  },
+
   electionTracker: {
     alignSelf: 'center',
     flex: 1,
@@ -137,7 +155,7 @@ const styles = StyleSheet.create({
 
   allianceBoards: {
     display: 'flex',
-    flex: 8,
+    flex: 9,
   },
 
   liberalBoard : {
@@ -156,10 +174,12 @@ const styles = StyleSheet.create({
     width: '0%',
   },
 
-  notification: {
-    height: '20%',
-    backgroundColor: 'purple',
+  button: {
+    flex: 0.05,
+    height: '2%',
+    backgroundColor: 'brown',
   }
+
 })
 
 const mapStateToProps = (state) => ({
