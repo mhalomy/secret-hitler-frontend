@@ -4,7 +4,7 @@ import { CardSection } from './CardSection';
 
 const HomeImage = (props) => {
   return (
-    <CardSection>
+    <CardSection style={{ borderRadius: 7 }} >
       <Image
         style={styles.imageStyle}
         source={{uri: imageUrl}}
@@ -13,7 +13,8 @@ const HomeImage = (props) => {
   );
 };
 
-const imageUrl = 'https://i.imgur.com/C7hXP5I.jpg';
+// const imageUrl = 'https://i.imgur.com/C7hXP5I.jpg';
+const imageUrl = 'https://i.imgur.com/vQ3wcbU.jpg';
 const styles = {
   imageStyle: {
     height: 300,
@@ -21,7 +22,8 @@ const styles = {
     width: null,
     marginTop: 30,
     marginBottom: 30,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    borderRadius: 7
   }
 };
 
