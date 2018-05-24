@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Button} from 'react-native';
+import { View, Text, Image, StyleSheet} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MainBoard from './mainBoard';
-import Button2 from '../Common/Button';
+import Button from '../Components/Common/';
 
 class UserIntro extends Component {
   goToBoard = () => {
@@ -38,10 +38,10 @@ class UserIntro extends Component {
     <View style={styles.parent}>
       {this.renderRoleCard()}
 
-      <Button2
+      <Button
         onPress={this.goToBoard}>
         Ok, Got it!
-      </Button2>
+      </Button>
 
       {/* <Button
         navigation={this.props.navigation}
